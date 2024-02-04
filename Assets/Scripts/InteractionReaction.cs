@@ -21,7 +21,14 @@ public class InteractionReaction : MonoBehaviour
     {
         if (isMovable)
         {
-
+            if (transform.parent)
+            {
+                transform.SetParent(null);
+            }
+            else
+            {
+                transform.SetParent(GameObject.Find("Main Camera").transform);
+            }
         }
         else if (hasAnimation)
         {

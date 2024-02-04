@@ -5,6 +5,7 @@ public class InteractionScript : MonoBehaviour
     RaycastHit hit = new();
     [SerializeField]GameObject InteractableTEXT;
     [SerializeField]GameObject Interactables;
+    InteractionReaction potentialInteraction;
     bool ifHit;
     // Update is called once per frame
     void Update()
@@ -16,11 +17,23 @@ public class InteractionScript : MonoBehaviour
             if (hit.transform.gameObject.layer == 3)
             {
                 InteractableTEXT.SetActive(true);
+                potentialInteraction = hit.transform.gameObject.GetComponent<InteractionReaction>();
             }
             else
             {
                 InteractableTEXT.SetActive(false);
+                potentialInteraction = null;
             }
+        }
+        else
+        {
+            potentialInteraction = null;
+            InteractableTEXT.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            potentialInteraction.Dointeraction();
         }
     }
 }

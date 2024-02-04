@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b8f7475f26c1245b04391c5ff08a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMovable: 0
+  isMovable: 1
   hasAnimation: 0
   isInventoryItem: 0
 --- !u!1 &705507993
