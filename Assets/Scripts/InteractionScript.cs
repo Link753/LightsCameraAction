@@ -14,7 +14,7 @@ public class InteractionScript : MonoBehaviour
         ifHit = Physics.Raycast(transform.position, transform.forward, out hit, 3);
         if (ifHit)
         {
-            if (hit.transform.gameObject.layer == 3)
+            if (hit.transform.gameObject.layer == 3 || hit.transform.gameObject.layer == 6)
             {
                 InteractableTEXT.SetActive(true);
                 potentialInteraction = hit.transform.gameObject.GetComponent<InteractionReaction>();
@@ -22,7 +22,6 @@ public class InteractionScript : MonoBehaviour
             else
             {
                 InteractableTEXT.SetActive(false);
-                potentialInteraction = null;
             }
         }
         else
@@ -34,6 +33,7 @@ public class InteractionScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             potentialInteraction.Dointeraction();
+            potentialInteraction = null;
         }
     }
 }
