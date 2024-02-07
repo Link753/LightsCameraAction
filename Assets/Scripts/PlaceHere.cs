@@ -33,7 +33,7 @@ public class PlaceHere : MonoBehaviour
     {
         foreach(GameObject g in connectedObjects)
         {
-            g.GetComponents<MonoBehaviour>();
+            g.SetActive(true);
         }
     }
 }
