@@ -25,6 +25,15 @@ public class PlaceHere : MonoBehaviour
         if(collision.collider.gameObject.layer == 6)
         {
             Debug.Log("Plate Active");
+            ActivateAll();
+        }
+    }
+
+    void ActivateAll()
+    {
+        foreach(GameObject g in connectedObjects)
+        {
+            g.GetComponents<MonoBehaviour>();
         }
     }
 }

@@ -392,8 +392,9 @@ GameObject:
   - component: {fileID: 467644617}
   - component: {fileID: 467644616}
   - component: {fileID: 467644615}
+  - component: {fileID: 467644619}
   m_Layer: 0
-  m_Name: TestObject
+  m_Name: PlaceHere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,6 +486,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &467644619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467644614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37109f28b4ce785438b9f8eb0e30aa0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KeyMask:
+    serializedVersion: 2
+    m_Bits: 64
+  connectedObjects: []
 --- !u!1 &554314473
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +724,7 @@ GameObject:
   - component: {fileID: 568784975}
   - component: {fileID: 568784979}
   - component: {fileID: 568784980}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: InteractTEST
   m_TagString: Untagged
   m_Icon: {fileID: 0}
