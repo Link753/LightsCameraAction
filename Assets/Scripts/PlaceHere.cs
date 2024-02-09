@@ -8,6 +8,7 @@ public class PlaceHere : MonoBehaviour
     [SerializeField] LayerMask KeyMask;
     [Header("Connections")]
     [SerializeField] GameObject[] connectedObjects;
+    [SerializeField] GameObject[] AnimatedObjects;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,18 +23,26 @@ public class PlaceHere : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.collider.gameObject.layer == 6)
+        if(collision.collider.gameObject.layer == 6 || collision.collider.gameObject.layer == 7)
         {
-            Debug.Log("Plate Active");
-            ActivateAll();
+            foreach (GameObject g in connectedObjects)
+            {
+                g.SetActive(true);
+            }
+
+            foreach(GameObject g in AnimatedObjects)
+            {
+                g.GetComponent<Animator>();
+            }
         }
     }
 
-    void ActivateAll()
+    private void OnCollisionExit(Collision collision)
     {
-        foreach(GameObject g in connectedObjects)
+        foreach (GameObject g in connectedObjects)
         {
-            g.SetActive(true);
+            g.SetActive(false);
         }
     }
+
 }

@@ -32,7 +32,10 @@ public class InteractionScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            potentialInteraction.Dointeraction();
+            if (potentialInteraction)
+            {
+                potentialInteraction.Dointeraction();
+            }
             potentialInteraction = null;
         }
     }
