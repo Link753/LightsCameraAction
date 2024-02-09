@@ -8,11 +8,12 @@ public class InteractionReaction : MonoBehaviour
     [SerializeField] bool isMovable;
     [SerializeField] bool hasAnimation;
     [SerializeField] bool isInventoryItem;
+    [SerializeField] bool isSwitch;
     [Header("Check Object")]
     [SerializeField] bool doesInteractwithEnvironment;
+    [Header("For Switch")]
+    [SerializeField] GameObject[] connectedObjects;
     Animator anim = new();
-    RaycastHit hit;
-    bool ifHit;
     Rigidbody body;
 
     private void Start()
@@ -59,6 +60,13 @@ public class InteractionReaction : MonoBehaviour
         else if (isInventoryItem)
         {
 
+        }
+        else if(isSwitch)
+        {
+            foreach(GameObject g in connectedObjects)
+            {
+                g.SetActive(!g.activeSelf);
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ public class PlaceHere : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnCollisionStay(Collision collision)
