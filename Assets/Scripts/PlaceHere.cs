@@ -9,16 +9,29 @@ public class PlaceHere : MonoBehaviour
     [Header("Connections")]
     [SerializeField] GameObject[] connectedObjects;
     [SerializeField] GameObject[] AnimatedObjects;
+    bool isActivated;
     // Start is called before the first frame update
     void Start()
     {
-
+        isActivated = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Player") & !isActivated)
+        {
+            foreach(GameObject g in AnimatedObjects)
+            {
+                g.GetComponent<Animator>().SetTrigger("isActive");
+            }
+            isActivated = true;
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -28,11 +41,6 @@ public class PlaceHere : MonoBehaviour
             foreach (GameObject g in connectedObjects)
             {
                 g.SetActive(true);
-            }
-
-            foreach(GameObject g in AnimatedObjects)
-            {
-                g.GetComponent<Animator>();
             }
         }
     }
