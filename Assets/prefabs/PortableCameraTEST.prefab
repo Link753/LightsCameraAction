@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 6831483813450720461}
   - component: {fileID: 5173607134569844895}
   - component: {fileID: 1257325007079448103}
+  - component: {fileID: 1621414388631258393}
   m_Layer: 0
   m_Name: PortableCameraTEST
   m_TagString: Untagged
@@ -285,6 +286,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1621414388631258393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4377377155598736974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897b0952027fa1048b498193d57b176e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5072583913691982068
 GameObject:
   m_ObjectHideFlags: 0
