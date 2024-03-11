@@ -10,7 +10,6 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        rawImage = transform.GetChild(0).GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -19,12 +18,10 @@ public class CameraScript : MonoBehaviour
         if(Input.GetKey(KeyCode.E))
         {
             animator.SetBool("IsActive", true);
-            rawImage.SetActive(true);
         }
         else
         {
             animator.SetBool("IsActive", false);
-            rawImage.SetActive(false);
         }
     }
 }
