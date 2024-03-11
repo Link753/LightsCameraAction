@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SaveData { 
 
-    public void SaveThis()
+    public void SaveThis(ObjectData data)
     {
 
     }
