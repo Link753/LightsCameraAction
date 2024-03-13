@@ -19,4 +19,14 @@ public class ObjectData : MonoBehaviour
         coords[1] = transform.position.y;
         coords[2] = transform.position.z;
     }
+
+    public void Save()
+    {
+        hit.collider.gameObject.GetComponent<FloorData>().AddtoStack(this);
+    }
+
+    public string GetFloor()
+    {
+        return floorLevel;
+    }
 }

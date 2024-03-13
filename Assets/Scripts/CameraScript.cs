@@ -8,6 +8,7 @@ public class CameraScript : MonoBehaviour
     string curFloor;
     bool IsCapturing;
     Animator animator;
+    [SerializeField] GameObject[] Interactables;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +48,14 @@ public class CameraScript : MonoBehaviour
         }
         //get floor ID
         //save all interactables
+        foreach(GameObject g in Interactables)
+        {
+            if (g.GetComponent<ObjectData>().GetFloor() == curFloor)
+            {
+                g.GetComponent<ObjectData>().Save();
+            }
+        }
+        hit.collider.gameObject.GetComponent<FloorData>().Savethis();
         IsCapturing = false;
     }
 
