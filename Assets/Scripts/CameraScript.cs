@@ -48,14 +48,6 @@ public class CameraScript : MonoBehaviour
         }
         //get floor ID
         //save all interactables
-        foreach(GameObject g in Interactables)
-        {
-            if (g.GetComponent<ObjectData>().GetFloor() == curFloor)
-            {
-                g.GetComponent<ObjectData>().Save();
-            }
-        }
-        hit.collider.gameObject.GetComponent<FloorData>().Savethis();
         IsCapturing = false;
     }
 

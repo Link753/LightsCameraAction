@@ -1,24 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
 public class FloorData : MonoBehaviour
 {
-    ObjectData[] thisFloorsData;
+    GameObject RoomPrefab;
+    int ImageNumber;
+    float[] CamCoords, CamRotation;
     // Start is called before the first frame update
     void Start()
     {
-        thisFloorsData = new ObjectData[thisFloorsData.Length];
+        CamCoords = new float[3];
+        CamRotation = new float[3];
     }
 
-    public void AddtoStack(ObjectData data)
+    public void SetData(GameObject RoomPrefab, int ImageNo, float[] CamCoords, float[] CamRotation)
     {
-        thisFloorsData.Append(data);
+
     }
 
     public void Savethis()
     {
-        SaveSystem.SaveObject(this, false);
+
     }
 }

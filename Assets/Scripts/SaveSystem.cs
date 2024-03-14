@@ -6,21 +6,18 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    public static void SaveObject(FloorData floor, bool IsSavingPlayer)
+    public static void SavePlayer(SaveData PlayerData)
     {
-        string path;
         BinaryFormatter binaryFormatter = new BinaryFormatter();
-        if(IsSavingPlayer)
-        {
-            path = Application.persistentDataPath + "PlayerSaves.save";
-        }
-        else
-        {
-            path = Application.persistentDataPath + "CameraSaves.save";
-        }
-        FileStream stream = new FileStream(path, FileMode.Create);
-        binaryFormatter.Serialize(stream, floor);
+        string path = Application.persistentDataPath + "PlayerSaves.save";
+        FileStream stream = new(path, FileMode.Create);
+        binaryFormatter.Serialize(stream, PlayerData);
         stream.Close();
+    }
+
+    public static void SavePicture()
+    {
+
     }
 
     public static void LoadObjects(bool IsLoadingPlayer)
