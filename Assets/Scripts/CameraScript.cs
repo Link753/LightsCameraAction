@@ -33,7 +33,6 @@ public class CameraScript : MonoBehaviour
     {
         if (Input.GetAxis("Fire1") == 1 & !IsCapturing)
         {
-            Debug.Log("Mouse Click");
             IsCapturing = true;
             CaptureImage();
         }
