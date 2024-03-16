@@ -7,12 +7,21 @@ using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveSystem
 {
     #region SAVING
-    public static void SavePlayer(SaveData PlayerData)
+    public static void Save(SaveData Data, bool isSavingPlayer)
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "PlayerSaves.save";
+        string path;
+        if (isSavingPlayer)
+        {
+            path = Application.persistentDataPath + "PlayerSaves.save";
+        }
+        else
+        {
+            path = Application.persistentDataPath + ("/Image" + Data.imageNo + ".image");
+        }
+        Debug.Log(path);
         FileStream stream = new(path, FileMode.Create);
-        binaryFormatter.Serialize(stream, PlayerData);
+        binaryFormatter.Serialize(stream, Data);
         stream.Close();
     }
     public static void SavePicture(FloorData data, int ImageNo)

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
     RaycastHit hit;
-    string curFloor;
+    int imageNo;
     bool IsCapturing;
+    bool[] pictures;
     Animator animator;
     [SerializeField] GameObject[] Interactables;
     // Start is called before the first frame update
@@ -14,6 +16,10 @@ public class CameraScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         IsCapturing = false;
+        pictures = new bool[3];
+        pictures[0] = false;
+        pictures[1] = false;
+        pictures[2] = false;
     }
 
     // Update is called once per frame
@@ -22,6 +28,11 @@ public class CameraScript : MonoBehaviour
         if(Input.GetKey(KeyCode.E))
         {
             animator.SetBool("IsActive", true);
+            if (Input.GetMouseButton(0))
+            {
+                IsCapturing = true;
+                CaptureImage();
+            }
         }
         else
         {
@@ -29,24 +40,19 @@ public class CameraScript : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
-    {
-        if (Input.GetAxis("Fire1") == 1 & !IsCapturing)
-        {
-            IsCapturing = true;
-            CaptureImage();
-        }
-    }
-
     void CaptureImage()
     {
         Physics.Raycast(transform.position, -transform.up, out hit);
-        if(hit.collider != null)
+        for(int i = 0; i < pictures.Length; i++)
         {
-            curFloor = hit.collider.gameObject.name;
+            if (!pictures[i])
+            {
+                imageNo = i;
+                pictures[i] = true;
+                break;
+            }
         }
-        //get floor ID
-        //save all interactables
+        hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform, hit.collider.gameObject.transform.parent.gameObject);
         IsCapturing = false;
     }
 

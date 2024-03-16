@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class FloorData
+public class FloorData : MonoBehaviour
 {
-    GameObject RoomPrefab;
-    int ImageNumber;
-    float[] CamCoords, CamRotation;
+    public GameObject RoomPrefab;
+    public int ImageNumber;
+    public float[] CamCoords, CamRotation;
 
-    public FloorData(int ImageNo, Transform CamInfo, GameObject Room)
+    public void GenFloorData(int ImageNo, Transform CamInfo, GameObject Room)
     {
         CamCoords = new float[3];
         CamRotation = new float[3];
@@ -21,7 +21,8 @@ public class FloorData
         CamRotation[0] = CamInfo.rotation.x;
         CamRotation[1] = CamInfo.rotation.y;
         CamRotation[2] = CamInfo.rotation.z;
-        SaveSystem.SavePicture(this, ImageNumber);
+        SaveData data = new SaveData(this);
+        data.SaveThis();
     }
 
     public void LoadImage(int ImageNo)
