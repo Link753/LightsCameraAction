@@ -13,7 +13,7 @@ public static class SaveSystem
         string path;
         if (isSavingPlayer)
         {
-            path = Application.persistentDataPath + "PlayerSaves.save";
+            path = Application.persistentDataPath + "/PlayerSaves.save";
         }
         else
         {
@@ -24,15 +24,6 @@ public static class SaveSystem
         binaryFormatter.Serialize(stream, Data);
         stream.Close();
     }
-    public static void SavePicture(FloorData data, int ImageNo)
-    {
-        BinaryFormatter binaryFormatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + ("/Image" + ImageNo + ".image");
-        Debug.Log(path);
-        FileStream stream = new(path, FileMode.Create);
-        binaryFormatter.Serialize(stream, data);
-        stream.Close();
-    }
     #endregion
 
     #region LOADING
@@ -40,7 +31,8 @@ public static class SaveSystem
     {
         BinaryFormatter binaryParser = new BinaryFormatter();
         string path = Application.persistentDataPath + ("/Image" + ImageNo + ".image");
-        if(path != null)
+        Debug.Log(path);
+        if (File.Exists(path))
         {
             FileStream stream = new(path, FileMode.Open);
             FloorData FD = binaryParser.Deserialize(stream) as FloorData;

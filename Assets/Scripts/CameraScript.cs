@@ -7,15 +7,14 @@ public class CameraScript : MonoBehaviour
 {
     RaycastHit hit;
     int imageNo;
-    bool IsCapturing;
     bool[] pictures;
     Animator animator;
-    [SerializeField] GameObject[] Interactables;
+    [SerializeField] Transform ViewPicture;
+    [SerializeField] Values Values;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        IsCapturing = false;
         pictures = new bool[3];
         pictures[0] = false;
         pictures[1] = false;
@@ -28,15 +27,25 @@ public class CameraScript : MonoBehaviour
         if(Input.GetKey(KeyCode.E))
         {
             animator.SetBool("IsActive", true);
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonUp(0))
             {
-                IsCapturing = true;
                 CaptureImage();
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+                LoadImage(imageNo);
+                Debug.Log(imageNo);
+                imageNo++;
             }
         }
         else
         {
             animator.SetBool("IsActive", false);
+        }
+
+        if(imageNo > 2)
+        {
+            imageNo = 0;
         }
     }
 
@@ -52,13 +61,13 @@ public class CameraScript : MonoBehaviour
                 break;
             }
         }
-        hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform, hit.collider.gameObject.transform.parent.gameObject);
-        IsCapturing = false;
+        hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform);
     }
 
-    void LoadImage()
+    void LoadImage(int ImageNo)
     {
-        //get floor ID
-        //load all interactables
+        FloorData FD = SaveSystem.LoadPicture(ImageNo);
+        FD.LoadData(FD);
+        FD.RecreateRoom(transform, ViewPicture);
     }
 }

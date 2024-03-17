@@ -7,12 +7,12 @@ public class SaveData {
 
     bool isPlayerData;
     float[] CamPos, CamRot;
-    GameObject Room;
+    string RoomName;
     public int imageNo;
 
     public SaveData(FloorData data)
     {
-        Room = data.RoomPrefab;
+        RoomName = data.RoomPrefab;
         CamPos = data.CamCoords;
         CamRot = data.CamRotation;
         imageNo = data.ImageNumber;
