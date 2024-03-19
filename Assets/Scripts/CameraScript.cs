@@ -19,6 +19,7 @@ public class CameraScript : MonoBehaviour
         pictures[0] = false;
         pictures[1] = false;
         pictures[2] = false;
+        imageNo = 0;
     }
 
     // Update is called once per frame
@@ -66,7 +67,9 @@ public class CameraScript : MonoBehaviour
 
     void LoadImage(int ImageNo)
     {
-        FloorData FD = SaveSystem.LoadPicture(ImageNo);
+        Debug.Log(imageNo);
+        FloorData FD = new();
+        FD = SaveSystem.LoadPicture(ImageNo);
         FD.LoadData(FD);
         FD.RecreateRoom(transform, ViewPicture);
     }
