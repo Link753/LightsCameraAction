@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData {
 
-    bool isPlayerData;
-    float[] CamPos, CamRot;
-    string RoomName;
+    public bool isPlayerData;
+    public float[] CamPos, CamRot;
+    public string RoomName;
     public int imageNo;
 
     public SaveData(FloorData data)
@@ -17,7 +17,6 @@ public class SaveData {
         CamRot = data.CamRotation;
         imageNo = data.ImageNumber;
         isPlayerData = false;
-        SaveThis();
     }
 
     public SaveData()

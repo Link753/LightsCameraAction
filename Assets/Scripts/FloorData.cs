@@ -9,7 +9,7 @@ public class FloorData : MonoBehaviour
     public int ImageNumber;
     public float[] CamCoords, CamRotation;
 
-    public void GenFloorData(int ImageNo, Transform CamInfo)
+    public FloorData GenFloorData(int ImageNo, Transform CamInfo)
     {
         CamCoords = new float[3];
         CamRotation = new float[3];
@@ -21,15 +21,14 @@ public class FloorData : MonoBehaviour
         CamRotation[0] = CamInfo.rotation.x;
         CamRotation[1] = CamInfo.rotation.y;
         CamRotation[2] = CamInfo.rotation.z;
-        SaveData data = new(this);
-        data.SaveThis();
+        return this;
     }
 
-    public void LoadData(FloorData FD)
+    public void LoadData(SaveData SD)
     {
-        RoomPrefab = FD.RoomPrefab;
-        CamCoords = FD.CamCoords;
-        CamRotation = FD.CamRotation;
+        RoomPrefab = SD.RoomName;
+        CamCoords = SD.CamPos;
+        CamRotation = SD.CamRot;
         ImageNumber = 0;
     }
 

@@ -27,7 +27,7 @@ public static class SaveSystem
     #endregion
 
     #region LOADING
-    public static FloorData LoadPicture(int ImageNo)
+    public static SaveData LoadPicture(int ImageNo)
     {
         BinaryFormatter binaryParser = new BinaryFormatter();
         string path = Application.persistentDataPath + ("/Image" + ImageNo + ".image");
@@ -35,9 +35,9 @@ public static class SaveSystem
         if (File.Exists(path))
         {
             FileStream stream = new(path, FileMode.Open);
-            FloorData FD = binaryParser.Deserialize(stream) as FloorData;
+            SaveData SD = binaryParser.Deserialize(stream) as SaveData;
             stream.Close();
-            return FD;
+            return SD;
         }
         else
         {

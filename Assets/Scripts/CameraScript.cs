@@ -11,6 +11,7 @@ public class CameraScript : MonoBehaviour
     Animator animator;
     [SerializeField] Transform ViewPicture;
     [SerializeField] Values Values;
+    [SerializeField] GameObject DefaultViewPort ,CameraViewPort, DefaultCamera, ViewCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,15 +63,26 @@ public class CameraScript : MonoBehaviour
                 break;
             }
         }
-        hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform);
+        SaveData SD = new(hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform));
+        SaveSystem.Save(SD, false);
     }
 
     void LoadImage(int ImageNo)
     {
+        DefaultViewPort.SetActive(false);
+        DefaultCamera.SetActive(false);
+        ViewCamera.SetActive(true);
+        CameraViewPort.SetActive(true);
+
         Debug.Log(imageNo);
-        FloorData FD = new();
-        FD = SaveSystem.LoadPicture(ImageNo);
-        FD.LoadData(FD);
-        FD.RecreateRoom(transform, ViewPicture);
+        SaveData SD = SaveSystem.LoadPicture(ImageNo);
+        for(int i = 0; i<ViewPicture.transform.childCount;i++)
+        {
+            Destroy(ViewPicture.transform.GetChild(i).gameObject);
+        }
+        Instantiate(Values.GetLevel(SD.RoomName), ViewPicture);
+        ViewCamera.transform.parent = null;
+        ViewCamera.transform.position = new Vector3(SD.CamPos[0], SD.CamPos[1] - 50, SD.CamPos[2]);
+        ViewCamera.transform.eulerAngles = new Vector3(SD.CamRot[0], SD.CamRot[1], SD.CamRot[2]);
     }
 }
