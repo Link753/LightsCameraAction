@@ -9,7 +9,7 @@ public class FloorData : MonoBehaviour
     public int ImageNumber;
     public float[] CamCoords, CamRotation;
 
-    public FloorData GenFloorData(int ImageNo, Transform CamInfo)
+    public FloorData GenFloorData(int ImageNo, Transform CamInfo, Transform player)
     {
         CamCoords = new float[3];
         CamRotation = new float[3];
@@ -18,9 +18,9 @@ public class FloorData : MonoBehaviour
         CamCoords[0] = CamInfo.position.x;
         CamCoords[1] = CamInfo.position.y;
         CamCoords[2] = CamInfo.position.z;
-        CamRotation[0] = CamInfo.rotation.x;
-        CamRotation[1] = CamInfo.rotation.y;
-        CamRotation[2] = CamInfo.rotation.z;
+        CamRotation[0] = player.rotation.x;
+        CamRotation[1] = player.rotation.y;
+        CamRotation[2] = player.rotation.z;
         return this;
     }
 

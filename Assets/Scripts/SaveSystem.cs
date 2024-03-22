@@ -31,7 +31,6 @@ public static class SaveSystem
     {
         BinaryFormatter binaryParser = new BinaryFormatter();
         string path = Application.persistentDataPath + ("/Image" + ImageNo + ".image");
-        Debug.Log(path);
         if (File.Exists(path))
         {
             FileStream stream = new(path, FileMode.Open);

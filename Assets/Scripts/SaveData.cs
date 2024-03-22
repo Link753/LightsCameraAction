@@ -15,6 +15,7 @@ public class SaveData {
         RoomName = data.RoomPrefab;
         CamPos = data.CamCoords;
         CamRot = data.CamRotation;
+        Debug.Log(CamRot);
         imageNo = data.ImageNumber;
         isPlayerData = false;
     }

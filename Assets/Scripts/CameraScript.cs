@@ -55,7 +55,7 @@ public class CameraScript : MonoBehaviour
             if(SaveSystem.LoadPicture(i) == null)
             {
                 imageNo = i;
-                SaveData SD = new(hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform));
+                SaveData SD = new(hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform, transform.parent));
                 SaveSystem.Save(SD, false);
                 break;
             }
@@ -89,10 +89,11 @@ public class CameraScript : MonoBehaviour
             ViewCamera.SetActive(true);
             CameraViewPort.SetActive(true);
             SD = SaveSystem.LoadPicture(imageNo);
+            Debug.Log(SD.CamRot[1]);
             Instantiate(Values.GetLevel(SD.RoomName), ViewPicture);
             ViewCamera.transform.parent = null;
             ViewCamera.transform.position = new Vector3(SD.CamPos[0], SD.CamPos[1] - 50, SD.CamPos[2]);
-            ViewCamera.transform.eulerAngles = new Vector3(SD.CamRot[0], SD.CamRot[1], SD.CamRot[2]);
+            ViewCamera.transform.rotation = Quaternion.Euler(new Vector3(SD.CamRot[0], SD.CamRot[1], SD.CamRot[2]));
         }
     }
 }
