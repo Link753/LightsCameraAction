@@ -6,8 +6,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     RaycastHit hit;
-    int imageNo;
-    bool[] pictures;
+    int imageNo, MaxpictureCount;
     Animator animator;
     [SerializeField] Transform ViewPicture;
     [SerializeField] Values Values;
@@ -16,10 +15,7 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        pictures = new bool[3];
-        pictures[0] = false;
-        pictures[1] = false;
-        pictures[2] = false;
+        MaxpictureCount = 10;
         imageNo = 0;
     }
 
@@ -45,7 +41,7 @@ public class CameraScript : MonoBehaviour
             animator.SetBool("IsActive", false);
         }
 
-        if(imageNo > 2)
+        if(imageNo > MaxpictureCount)
         {
             imageNo = 0;
         }
@@ -54,35 +50,49 @@ public class CameraScript : MonoBehaviour
     void CaptureImage()
     {
         Physics.Raycast(transform.position, -transform.up, out hit);
-        for(int i = 0; i < pictures.Length; i++)
+        for(int i = 0; i < MaxpictureCount; i++)
         {
-            if (!pictures[i])
+            if(SaveSystem.LoadPicture(i) == null)
             {
                 imageNo = i;
-                pictures[i] = true;
+                SaveData SD = new(hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform));
+                SaveSystem.Save(SD, false);
                 break;
             }
         }
-        SaveData SD = new(hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform));
-        SaveSystem.Save(SD, false);
     }
 
     void LoadImage(int ImageNo)
     {
-        DefaultViewPort.SetActive(false);
-        DefaultCamera.SetActive(false);
-        ViewCamera.SetActive(true);
-        CameraViewPort.SetActive(true);
-
-        Debug.Log(imageNo);
-        SaveData SD = SaveSystem.LoadPicture(ImageNo);
-        for(int i = 0; i<ViewPicture.transform.childCount;i++)
+        for (int i = 0; i < ViewPicture.transform.childCount; i++)
         {
             Destroy(ViewPicture.transform.GetChild(i).gameObject);
         }
-        Instantiate(Values.GetLevel(SD.RoomName), ViewPicture);
-        ViewCamera.transform.parent = null;
-        ViewCamera.transform.position = new Vector3(SD.CamPos[0], SD.CamPos[1] - 50, SD.CamPos[2]);
-        ViewCamera.transform.eulerAngles = new Vector3(SD.CamRot[0], SD.CamRot[1], SD.CamRot[2]);
+
+        SaveData SD;
+        Debug.Log(imageNo);
+        if(SaveSystem.LoadPicture(ImageNo) == null)
+        {
+            if(imageNo > MaxpictureCount)
+            {
+                LoadImage(imageNo++);
+            }
+            else
+            {
+                LoadImage(0);
+            }
+        }
+        else
+        {
+            DefaultViewPort.SetActive(false);
+            DefaultCamera.SetActive(false);
+            ViewCamera.SetActive(true);
+            CameraViewPort.SetActive(true);
+            SD = SaveSystem.LoadPicture(imageNo);
+            Instantiate(Values.GetLevel(SD.RoomName), ViewPicture);
+            ViewCamera.transform.parent = null;
+            ViewCamera.transform.position = new Vector3(SD.CamPos[0], SD.CamPos[1] - 50, SD.CamPos[2]);
+            ViewCamera.transform.eulerAngles = new Vector3(SD.CamRot[0], SD.CamRot[1], SD.CamRot[2]);
+        }
     }
 }

@@ -41,7 +41,7 @@ public static class SaveSystem
         }
         else
         {
-            return null;//code this to return NO IMAGE file as unknown how unity will handle this
+            return null;
         }
     }
 
