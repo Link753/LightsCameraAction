@@ -6,16 +6,17 @@ using UnityEngine;
 public class SaveData {
 
     public bool isPlayerData;
-    public float[] CamPos, CamRot;
+    public float[] CamPos, RoomPos; 
+    public float CamRot;
     public string RoomName;
     public int imageNo;
 
     public SaveData(FloorData data)
     {
+        RoomPos = data.RoomCoords;
         RoomName = data.RoomPrefab;
         CamPos = data.CamCoords;
         CamRot = data.CamRotation;
-        Debug.Log(CamRot);
         imageNo = data.ImageNumber;
         isPlayerData = false;
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     RaycastHit hit;
-    int imageNo, MaxpictureCount;
+    int imageNo, MaxpictureCount, takenPhotos;
     Animator animator;
     [SerializeField] Transform ViewPicture;
     [SerializeField] Values Values;
@@ -29,11 +29,17 @@ public class CameraScript : MonoBehaviour
             {
                 CaptureImage();
             }
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(1) && takenPhotos != 0)
             {
                 LoadImage(imageNo);
                 Debug.Log(imageNo);
-                imageNo++;
+            }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                if (SaveSystem.RemovePhoto(imageNo) == 1)
+                {
+                    takenPhotos--;
+                }
             }
         }
         else
@@ -57,6 +63,7 @@ public class CameraScript : MonoBehaviour
                 imageNo = i;
                 SaveData SD = new(hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform, transform.parent));
                 SaveSystem.Save(SD, false);
+                takenPhotos++;
                 break;
             }
         }
@@ -75,11 +82,13 @@ public class CameraScript : MonoBehaviour
         {
             if(imageNo > MaxpictureCount)
             {
-                LoadImage(imageNo++);
+                imageNo = 0;
+                LoadImage(imageNo);
             }
             else
             {
-                LoadImage(0);
+                imageNo++;
+                LoadImage(imageNo);
             }
         }
         else
@@ -89,11 +98,13 @@ public class CameraScript : MonoBehaviour
             ViewCamera.SetActive(true);
             CameraViewPort.SetActive(true);
             SD = SaveSystem.LoadPicture(imageNo);
-            Debug.Log(SD.CamRot[1]);
-            Instantiate(Values.GetLevel(SD.RoomName), ViewPicture);
+            Debug.Log(SD.CamRot);
+            GameObject level = Instantiate(Values.GetLevel(SD.RoomName), ViewPicture);
+            level.transform.position = new(SD.RoomPos[0], SD.RoomPos[1], SD.RoomPos[2]);
             ViewCamera.transform.parent = null;
             ViewCamera.transform.position = new Vector3(SD.CamPos[0], SD.CamPos[1] - 50, SD.CamPos[2]);
-            ViewCamera.transform.rotation = Quaternion.Euler(new Vector3(SD.CamRot[0], SD.CamRot[1], SD.CamRot[2]));
+            ViewCamera.transform.localRotation = Quaternion.Euler(new Vector3(0, SD.CamRot, 0));
+            imageNo++;
         }
     }
 }

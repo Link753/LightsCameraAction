@@ -7,20 +7,22 @@ public class FloorData : MonoBehaviour
 {
     public string RoomPrefab;
     public int ImageNumber;
-    public float[] CamCoords, CamRotation;
+    public float[] CamCoords, RoomCoords;
+    public float CamRotation;
 
     public FloorData GenFloorData(int ImageNo, Transform CamInfo, Transform player)
     {
         CamCoords = new float[3];
-        CamRotation = new float[3];
+        RoomCoords = new float[3];
         RoomPrefab = transform.parent.name;
+        RoomCoords[0] = transform.parent.position.x;
+        RoomCoords[1] = transform.parent.position.y - 50;
+        RoomCoords[2] = transform.parent.position.z;
         ImageNumber = ImageNo;
         CamCoords[0] = CamInfo.position.x;
         CamCoords[1] = CamInfo.position.y;
         CamCoords[2] = CamInfo.position.z;
-        CamRotation[0] = player.rotation.x;
-        CamRotation[1] = player.rotation.y;
-        CamRotation[2] = player.rotation.z;
+        CamRotation = player.eulerAngles.y;
         return this;
     }
 
