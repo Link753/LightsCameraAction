@@ -1099,6 +1099,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5877810931277510372, guid: eae8b01d0cc8ebc4081e13f2043540ef, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 263cf455ea7cc5f419f9fc33f3e401cf, type: 2}
     - target: {fileID: 6428057223790761435, guid: eae8b01d0cc8ebc4081e13f2043540ef, type: 3}
       propertyPath: m_Name
       value: _----Alpha Level-----_
@@ -2700,7 +2704,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4462665987380369074, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
       propertyPath: m_Name
-      value: EntityAnimationTEST
+      value: Entity
       objectReference: {fileID: 0}
     - target: {fileID: 4462665987380369074, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
       propertyPath: m_Layer
