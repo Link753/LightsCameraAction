@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 415450511924785874}
   - component: {fileID: 4688839248342278772}
   m_Layer: 0
-  m_Name: EntityAnimationTEST
+  m_Name: Entity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7691204001253693989
 MeshFilter:

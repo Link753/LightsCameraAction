@@ -1547,7 +1547,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 255
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2702,21 +2702,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: EntityAnimationTEST
       objectReference: {fileID: 0}
+    - target: {fileID: 4462665987380369074, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4563344632610260175, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4563344632610260175, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563344632610260175, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563344632610260175, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563344632610260175, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -188.07
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4563344632610260175, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.24
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4563344632610260175, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.6
+      value: -23.66
       objectReference: {fileID: 0}
     - target: {fileID: 4563344632610260175, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2744,6 +2760,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4563344632610260175, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688839248342278772, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

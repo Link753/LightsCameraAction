@@ -41,6 +41,13 @@ public class CameraScript : MonoBehaviour
                     takenPhotos--;
                 }
             }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                DefaultViewPort.SetActive(true);
+                DefaultCamera.SetActive(true);
+                ViewCamera.SetActive(false);
+                CameraViewPort.SetActive(false);
+            }
         }
         else
         {
