@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -31,7 +32,7 @@ public class EntityScript : MonoBehaviour
         }
         else if(Stage == 1)
         {
-            if (Mathf.Abs(Vector3.Distance(transform.position, Player.position)) > 10)
+            if (Mathf.Abs(Vector3.Distance(transform.position, Player.position)) > 1)
             {
                 agent.SetDestination(Player.position);
             }
@@ -44,5 +45,10 @@ public class EntityScript : MonoBehaviour
         {
             agent.SetDestination(Player.position);
         }
+    }
+
+    public void ChangeStage(int newStage)
+    {
+        Stage = newStage;
     }
 }

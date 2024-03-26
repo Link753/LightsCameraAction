@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     RaycastHit hit;
-    int imageNo, MaxpictureCount, takenPhotos;
+    int imageNo, MaxpictureCount, takenPhotos, timesLookedatEntity;
     Animator animator;
     [SerializeField] Transform ViewPicture;
     [SerializeField] Values Values;
@@ -17,6 +17,8 @@ public class CameraScript : MonoBehaviour
         animator = GetComponent<Animator>();
         MaxpictureCount = 10;
         imageNo = 0;
+        timesLookedatEntity = 0;
+        takenPhotos = 0;
     }
 
     // Update is called once per frame
@@ -72,6 +74,18 @@ public class CameraScript : MonoBehaviour
                 SaveSystem.Save(SD, false);
                 takenPhotos++;
                 break;
+            }
+        }
+
+        Physics.Raycast(transform.position + transform.forward, transform.forward * 100, out hit);
+        if (hit.collider.gameObject.GetComponent<EntityScript>())
+        {
+            hit.collider.gameObject.GetComponent<EntityScript>().ChangeStage(1);
+            timesLookedatEntity++;
+
+            if (timesLookedatEntity > 2)
+            {
+                hit.collider.gameObject.GetComponent<EntityScript>().ChangeStage(2);
             }
         }
     }
