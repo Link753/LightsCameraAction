@@ -9,6 +9,7 @@ public class EntityScript : MonoBehaviour
     int Stage;
     NavMeshAgent agent;
     [SerializeField] Transform Player;
+    [SerializeField] Transform[] telepoints;
     // Start is called before the first frame update
 
     private void Awake()
@@ -32,17 +33,6 @@ public class EntityScript : MonoBehaviour
         }
         else if(Stage == 1)
         {
-            if (Mathf.Abs(Vector3.Distance(transform.position, Player.position)) > 1)
-            {
-                agent.SetDestination(Player.position);
-            }
-            else
-            {
-                agent.SetDestination(transform.position);
-            }
-        }
-        else if(Stage == 2)
-        {
             agent.SetDestination(Player.position);
         }
     }
@@ -50,5 +40,12 @@ public class EntityScript : MonoBehaviour
     public void ChangeStage(int newStage)
     {
         Stage = newStage;
+    }
+
+    public void Teleport(Transform TargetPos)
+    {
+        int rng = Random.Range(0, TargetPos.childCount);
+        Debug.Log(rng);
+        transform.position = TargetPos.GetChild(rng).position;
     }
 }
