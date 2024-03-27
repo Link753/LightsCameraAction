@@ -73,7 +73,7 @@ public class CameraScript : MonoBehaviour
             {
                 imageNo = i;
                 SaveData SD = new(hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform, transform.parent));
-                SaveSystem.Save(SD, false);
+                SaveSystem.Save(SD);
                 takenPhotos++;
                 break;
             }

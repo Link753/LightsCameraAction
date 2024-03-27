@@ -21,14 +21,9 @@ public class SaveData {
         isPlayerData = false;
     }
 
-    public SaveData()
-    {
-
-    }
-
     public void SaveThis()
     {
-        SaveSystem.Save(this, isPlayerData);
+        SaveSystem.Save(this);
     }
 
 }
