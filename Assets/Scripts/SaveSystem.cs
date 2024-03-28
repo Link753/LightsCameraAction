@@ -46,17 +46,20 @@ public static class SaveSystem
         }
     }
 
-    public static void LoadObjects(bool IsLoadingPlayer)
+    public static PlayerData LoadPlayer()
     {
-        string path;
-        BinaryFormatter binaryFormatter = new BinaryFormatter();
-        if(IsLoadingPlayer)
+        BinaryFormatter binaryFormatter = new();
+        string path = Application.persistentDataPath + ("/Save.save");
+        if (File.Exists(path))
         {
-            path = Application.persistentDataPath + "PlayerSaves.save";
+            FileStream fileStream = new(path, FileMode.Open);
+            PlayerData PD = binaryFormatter.Deserialize(fileStream) as PlayerData;
+            fileStream.Close();
+            return PD;
         }
         else
         {
-            path = Application.persistentDataPath + "CameraSaves.save";
+            return null;
         }
     }
     #endregion

@@ -1,17 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.IO;
 using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
     RaycastHit hit;
-    int imageNo, MaxpictureCount, takenPhotos, timesLookedatEntity, rng;
+    int imageNo, MaxpictureCount, takenPhotos, timesLookedatEntity, CameraBatteryLevel;
     Animator animator;
     [SerializeField] Transform ViewPicture;
     [SerializeField] Values Values;
     [SerializeField] GameObject DefaultViewPort ,CameraViewPort, DefaultCamera, ViewCamera;
     Transform TeleportPoints;
+
+    private void Awake()
+    {
+        string path = Application.persistentDataPath + ("/Save.save");
+        DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
+        takenPhotos = dir.GetFiles().Length;
+        if (File.Exists(path))
+        {
+            PlayerData PD = SaveSystem.LoadPlayer();
+            CameraBatteryLevel = PD.CameraBatteryLevel;
+            takenPhotos++;
+        }
+        Debug.Log(takenPhotos);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +104,11 @@ public class CameraScript : MonoBehaviour
                 hit.collider.gameObject.GetComponent<EntityScript>().ChangeStage(1);
             }
         }
+    }
+
+    public void Save()
+    {
+        Values.CameraProperties(CameraBatteryLevel, takenPhotos);
     }
 
     void LoadImage(int ImageNo)

@@ -13,12 +13,11 @@ public class PlayerData
         PlayerPos[0] = Player.position.x;
         PlayerPos[1] = Player.position.y;
         PlayerPos[2] = Player.position.z;
-        PlayerRot[0] = Player.rotation.x;
-        PlayerRot[1] = Player.rotation.y;
-        PlayerRot[2] = Player.rotation.z;
+        PlayerRot[0] = Player.eulerAngles.x;
+        PlayerRot[1] = Player.eulerAngles.y;
+        PlayerRot[2] = Player.eulerAngles.z;
         CameraBatteryLevel = camBatLevel;
         takenPictures = taken;
         flagsSet = flagNO;
-        SaveSystem.Save(this);
     }
 }

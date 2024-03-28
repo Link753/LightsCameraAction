@@ -363,6 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - {fileID: 6428057223790761435, guid: eae8b01d0cc8ebc4081e13f2043540ef, type: 3}
+  Player: {fileID: 449316729}
 --- !u!4 &221390666
 Transform:
   m_ObjectHideFlags: 0
