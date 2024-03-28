@@ -66,18 +66,13 @@ public static class SaveSystem
 
     #region MODIFYING
 
-    public static int RemovePhoto(int ImageNo)
+    public static void RemovePhoto(int ImageNo)
     {
         string path = Application.persistentDataPath + ("/Image" + ImageNo + ".image");
         Debug.Log(path);
         if (File.Exists(path))
         {
             File.Delete(path);
-            return 1;
-        }
-        else
-        {
-            return 0;
         }
     }
 

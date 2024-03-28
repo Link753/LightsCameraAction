@@ -45,7 +45,6 @@ public class EntityScript : MonoBehaviour
     public void Teleport(Transform TargetPos)
     {
         int rng = Random.Range(0, TargetPos.childCount);
-        Debug.Log(rng);
         transform.position = TargetPos.GetChild(rng).position;
     }
 }

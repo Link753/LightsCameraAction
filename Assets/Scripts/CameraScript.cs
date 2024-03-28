@@ -12,17 +12,18 @@ public class CameraScript : MonoBehaviour
     [SerializeField] Values Values;
     [SerializeField] GameObject DefaultViewPort ,CameraViewPort, DefaultCamera, ViewCamera;
     Transform TeleportPoints;
+    DirectoryInfo dir;
 
     private void Awake()
     {
         string path = Application.persistentDataPath + ("/Save.save");
-        DirectoryInfo dir = new DirectoryInfo(Application.persistentDataPath);
+        dir = new(Application.persistentDataPath);
         takenPhotos = dir.GetFiles().Length;
         if (File.Exists(path))
         {
             PlayerData PD = SaveSystem.LoadPlayer();
             CameraBatteryLevel = PD.CameraBatteryLevel;
-            takenPhotos++;
+            takenPhotos--;
         }
         Debug.Log(takenPhotos);
     }
@@ -54,10 +55,8 @@ public class CameraScript : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.Space))
             {
-                if (SaveSystem.RemovePhoto(imageNo) == 1)
-                {
-                    takenPhotos--;
-                }
+                SaveSystem.RemovePhoto(imageNo);
+                takenPhotos = dir.GetFiles().Length;
             }
             if (Input.GetKey(KeyCode.Q))
             {
@@ -140,13 +139,11 @@ public class CameraScript : MonoBehaviour
             ViewCamera.SetActive(true);
             CameraViewPort.SetActive(true);
             SD = SaveSystem.LoadPicture(imageNo);
-            Debug.Log(SD.CamRot);
             GameObject level = Instantiate(Values.GetLevel(SD.RoomName), ViewPicture);
             level.transform.position = new(SD.RoomPos[0], SD.RoomPos[1], SD.RoomPos[2]);
             ViewCamera.transform.parent = null;
             ViewCamera.transform.position = new Vector3(SD.CamPos[0], SD.CamPos[1] - 50, SD.CamPos[2]);
             ViewCamera.transform.localRotation = Quaternion.Euler(new Vector3(0, SD.CamRot, 0));
-            imageNo++;
         }
     }
 }
