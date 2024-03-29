@@ -31,9 +31,17 @@ public class Values : MonoBehaviour
         flagsSet = flags;
     }
 
-    public void SavePlayer()
+    public int[] GetValues()
     {
-        PlayerData PD = new(CameraBatteryLevel, takenPictures, flagsSet, Player);
-        SaveSystem.Save(PD);
+        int[] Return = new int[3];
+        Return[0] = CameraBatteryLevel;
+        Return[1] = takenPictures;
+        Return[2] = flagsSet;
+        return Return;
+    }
+
+    public Transform GetPlayer()
+    {
+        return Player;
     }
 }

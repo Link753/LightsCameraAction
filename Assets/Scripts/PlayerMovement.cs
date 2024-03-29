@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] float speed = 12f, xmove, zmove;
     [SerializeField] Transform Camera;
+    [SerializeField] GameObject PauseMenu;
     Vector3 move = new();
 
     private void Awake()
@@ -36,6 +37,19 @@ public class PlayerMovement : MonoBehaviour
 
         move = transform.right * xmove + transform.forward * zmove;
         controller.Move(move * speed * Time.deltaTime);
-
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            PauseMenu.SetActive(!PauseMenu.activeSelf);
+            if (PauseMenu.activeSelf)
+            {
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
     }
 }

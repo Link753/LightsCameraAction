@@ -11,7 +11,6 @@ public static class SaveSystem
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         string path = Application.persistentDataPath + ("/Image" + Data.imageNo + ".image");
-        Debug.Log(path);
         FileStream stream = new(path, FileMode.Create);
         binaryFormatter.Serialize(stream, Data);
         stream.Close();
