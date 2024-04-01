@@ -6,7 +6,7 @@ using System.IO;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
-    [SerializeField] float speed = 12f, xmove, zmove;
+    [SerializeField] float speed = 5f, xmove, zmove;
     [SerializeField] Transform Camera;
     [SerializeField] GameObject PauseMenu;
     Vector3 move = new();

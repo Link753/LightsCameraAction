@@ -768,6 +768,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 9.704239
       objectReference: {fileID: 0}
+    - target: {fileID: -1853094968961178454, guid: 3512ab07e7c4b9c41a941466ee194b2d, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: e9ff2ac69ce1a4948b17cd8f87f541d7, type: 2}
     - target: {fileID: -1806680513116206669, guid: 3512ab07e7c4b9c41a941466ee194b2d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
