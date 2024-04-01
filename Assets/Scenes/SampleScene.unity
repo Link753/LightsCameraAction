@@ -1259,7 +1259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449316725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.51, z: -270.11}
+  m_LocalPosition: {x: -3.18, y: 1.51, z: -261.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1992,7 +1992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6685da42b5fc22e4fa119438fea4b118, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6685da42b5fc22e4fa119438fea4b118, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2328,7 +2328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.556, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3488,18 +3488,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3203356684364370710, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
-      propertyPath: m_TargetTexture
-      value: 
-      objectReference: {fileID: 8400000, guid: bb52145501baeb84d8d1b93fdd65135d, type: 2}
-    - target: {fileID: 4427653894353186567, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
-      propertyPath: m_TargetTexture
-      value: 
-      objectReference: {fileID: 8400000, guid: 5cc131b089185134b955991c4dadb3b0, type: 2}
-    - target: {fileID: 5633986360321907910, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
-      propertyPath: m_TargetTexture
-      value: 
-      objectReference: {fileID: 8400000, guid: cb3af154cf584894187aca4acca2a616, type: 2}
     - target: {fileID: 5795328665338493477, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: m_Name
       value: Monitoring Level
