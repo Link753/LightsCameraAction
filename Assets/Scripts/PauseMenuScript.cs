@@ -10,7 +10,6 @@ public class PauseMenuScript : MonoBehaviour
     [SerializeField] Transform Entity;
     int[] data;
     Transform player;
-    float dangerlevel = 20f;
 
     public void Resume()
     {

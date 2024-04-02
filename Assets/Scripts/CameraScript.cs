@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraScript : MonoBehaviour
 {
@@ -10,7 +12,8 @@ public class CameraScript : MonoBehaviour
     Animator animator;
     [SerializeField] Transform ViewPicture;
     [SerializeField] Values Values;
-    [SerializeField] GameObject DefaultViewPort ,CameraViewPort, DefaultCamera, ViewCamera;
+    [SerializeField] GameObject DefaultViewPort, CameraViewPort, DefaultCamera, ViewCamera;
+    [SerializeField] TMP_Text camDisplay;
     Transform TeleportPoints;
     DirectoryInfo dir;
 
@@ -25,7 +28,11 @@ public class CameraScript : MonoBehaviour
             CameraBatteryLevel = PD.CameraBatteryLevel;
             takenPhotos--;
         }
-        Debug.Log(takenPhotos);
+        else
+        {
+            takenPhotos = 0;
+            CameraBatteryLevel = 100;
+        }
     }
 
     // Start is called before the first frame update
@@ -35,12 +42,12 @@ public class CameraScript : MonoBehaviour
         MaxpictureCount = 10;
         imageNo = 0;
         timesLookedatEntity = 0;
-        takenPhotos = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        camDisplay.text = "Battery: " + CameraBatteryLevel + "%";
         if(Input.GetKey(KeyCode.E))
         {
             animator.SetBool("IsActive", true);
