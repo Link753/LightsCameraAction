@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenuScript : MonoBehaviour
 {
     [SerializeField] Values value;
+    [SerializeField] Image[] WarningLights;
+    [SerializeField] Transform Entity;
     int[] data;
-    Transform player; 
+    Transform player;
+    float dangerlevel = 20f;
+
     public void Resume()
     {
         Cursor.lockState = CursorLockMode.Locked;
