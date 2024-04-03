@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.IO;
 
 public class PlayerMovement : MonoBehaviour
@@ -49,6 +50,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Colliding");
+        if(collision.collider.gameObject.layer == 8)
+        {
+            if (collision.collider.gameObject.GetComponent<EntityScript>().isAgro())
+            {
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                collision.collider.gameObject.GetComponent<EntityScript>().Teleport();
             }
         }
     }

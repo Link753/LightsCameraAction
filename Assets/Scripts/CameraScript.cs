@@ -8,13 +8,12 @@ using UnityEngine.UI;
 public class CameraScript : MonoBehaviour
 {
     RaycastHit hit;
-    int imageNo, MaxpictureCount, takenPhotos, timesLookedatEntity, CameraBatteryLevel;
+    int imageNo, MaxpictureCount, takenPhotos, CameraBatteryLevel;
     Animator animator;
     [SerializeField] Transform ViewPicture;
     [SerializeField] Values Values;
     [SerializeField] GameObject DefaultViewPort, CameraViewPort, DefaultCamera, ViewCamera;
     [SerializeField] TMP_Text camDisplay;
-    Transform TeleportPoints;
     DirectoryInfo dir;
 
     private void Awake()
@@ -41,7 +40,6 @@ public class CameraScript : MonoBehaviour
         animator = GetComponent<Animator>();
         MaxpictureCount = 10;
         imageNo = 0;
-        timesLookedatEntity = 0;
     }
 
     // Update is called once per frame
@@ -87,7 +85,6 @@ public class CameraScript : MonoBehaviour
     void CaptureImage()
     {
         Physics.Raycast(transform.position, -transform.up, out hit);
-        TeleportPoints = hit.collider.gameObject.transform.parent.GetChild(0);
         for (int i = 0; i < MaxpictureCount; i++)
         {
             if(SaveSystem.LoadPicture(i) == null)
@@ -103,12 +100,7 @@ public class CameraScript : MonoBehaviour
         Physics.Raycast(transform.position + transform.forward, transform.forward * 100, out hit);
         if (hit.collider.gameObject.GetComponent<EntityScript>())
         {
-            timesLookedatEntity++;
-            hit.collider.gameObject.GetComponent<EntityScript>().Teleport(TeleportPoints);
-            if (timesLookedatEntity > 2)
-            {
-                hit.collider.gameObject.GetComponent<EntityScript>().ChangeStage(1);
-            }
+            hit.collider.gameObject.GetComponent<EntityScript>().Teleport();
         }
     }
 
