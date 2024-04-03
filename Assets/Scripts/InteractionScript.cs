@@ -30,7 +30,7 @@ public class InteractionScript : MonoBehaviour
             InteractableTEXT.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetMouseButtonUp(0))
         {
             if (potentialInteraction)
             {

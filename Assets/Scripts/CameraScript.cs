@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,12 @@ public class CameraScript : MonoBehaviour
 {
     RaycastHit hit;
     int imageNo, MaxpictureCount, takenPhotos, CameraBatteryLevel;
+    bool toggle, viewingMode, toggleflash;
     Animator animator;
     [SerializeField] Transform ViewPicture;
     [SerializeField] Values Values;
-    [SerializeField] GameObject DefaultViewPort, CameraViewPort, DefaultCamera, ViewCamera;
-    [SerializeField] TMP_Text camDisplay;
+    [SerializeField] GameObject DefaultViewPort, CameraViewPort, DefaultCamera, ViewCamera, flash;
+    [SerializeField] TMP_Text camDisplay, imageNodisplay;
     DirectoryInfo dir;
 
     private void Awake()
@@ -21,17 +23,21 @@ public class CameraScript : MonoBehaviour
         string path = Application.persistentDataPath + ("/Save.save");
         dir = new(Application.persistentDataPath);
         takenPhotos = dir.GetFiles().Length;
+        imageNo = takenPhotos;
         if (File.Exists(path))
         {
             PlayerData PD = SaveSystem.LoadPlayer();
             CameraBatteryLevel = PD.CameraBatteryLevel;
             takenPhotos--;
+            imageNo--;
         }
         else
         {
-            takenPhotos = 0;
             CameraBatteryLevel = 100;
         }
+        toggle = false;
+        toggleflash = false;
+        flash.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -39,36 +45,45 @@ public class CameraScript : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         MaxpictureCount = 10;
-        imageNo = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         camDisplay.text = "Battery: " + CameraBatteryLevel + "%";
-        if(Input.GetKey(KeyCode.E))
+        imageNodisplay.text = imageNo.ToString();
+        if(Input.GetKeyUp(KeyCode.E))
+        {
+            toggle = !toggle;
+        }
+
+        if (toggle)
         {
             animator.SetBool("IsActive", true);
-            if (Input.GetMouseButtonUp(0))
-            {
-                CaptureImage();
-            }
             if (Input.GetMouseButtonUp(1) && takenPhotos != 0)
             {
                 LoadImage(imageNo);
-                Debug.Log(imageNo);
+                imageNo++;
+                viewingMode = true;
             }
-            if (Input.GetKey(KeyCode.Space))
+
+            if (Input.GetMouseButtonUp(0) & !viewingMode)
             {
-                SaveSystem.RemovePhoto(imageNo);
-                takenPhotos = dir.GetFiles().Length;
+                CaptureImage();
             }
+
+            if (Input.GetKeyUp(KeyCode.F))
+            {
+                toggleflash = !toggleflash;
+            }
+
             if (Input.GetKey(KeyCode.Q))
             {
                 DefaultViewPort.SetActive(true);
                 DefaultCamera.SetActive(true);
                 ViewCamera.SetActive(false);
                 CameraViewPort.SetActive(false);
+                viewingMode = false;
             }
         }
         else
@@ -79,6 +94,15 @@ public class CameraScript : MonoBehaviour
         if(imageNo > MaxpictureCount)
         {
             imageNo = 0;
+        }
+
+        if (toggleflash)
+        {
+            flash.SetActive(true);
+        }
+        else
+        {
+            flash.SetActive(false);
         }
     }
 
@@ -93,6 +117,7 @@ public class CameraScript : MonoBehaviour
                 SaveData SD = new(hit.collider.gameObject.GetComponent<FloorData>().GenFloorData(imageNo, transform, transform.parent));
                 SaveSystem.Save(SD);
                 takenPhotos++;
+                CameraBatteryLevel -= 10;
                 break;
             }
         }
@@ -143,6 +168,20 @@ public class CameraScript : MonoBehaviour
             ViewCamera.transform.parent = null;
             ViewCamera.transform.position = new Vector3(SD.CamPos[0], SD.CamPos[1] - 50, SD.CamPos[2]);
             ViewCamera.transform.localRotation = Quaternion.Euler(new Vector3(0, SD.CamRot, 0));
+            if (SD.isUsingFlash)
+            {
+                ViewCamera.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else
+            {
+                ViewCamera.transform.GetChild(0).gameObject.SetActive(false);
+            }
+            CameraBatteryLevel -= 5;
         }
+    }
+
+    public bool isFlashactive()
+    {
+        return toggleflash;
     }
 }

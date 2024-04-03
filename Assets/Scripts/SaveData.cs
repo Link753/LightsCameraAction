@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData {
 
-    public bool isPlayerData;
+    public bool isUsingFlash;
     public float[] CamPos, RoomPos; 
     public float CamRot;
     public string RoomName;
@@ -18,7 +18,7 @@ public class SaveData {
         CamPos = data.CamCoords;
         CamRot = data.CamRotation;
         imageNo = data.ImageNumber;
-        isPlayerData = false;
+        isUsingFlash = data.isUsingFlash;
     }
 
     public void SaveThis()

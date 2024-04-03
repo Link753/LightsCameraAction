@@ -9,6 +9,7 @@ public class FloorData : MonoBehaviour
     public int ImageNumber;
     public float[] CamCoords, RoomCoords;
     public float CamRotation;
+    public bool isUsingFlash;
 
     public FloorData GenFloorData(int ImageNo, Transform CamInfo, Transform player)
     {
@@ -23,6 +24,7 @@ public class FloorData : MonoBehaviour
         CamCoords[1] = CamInfo.position.y;
         CamCoords[2] = CamInfo.position.z;
         CamRotation = player.eulerAngles.y;
+        isUsingFlash = CamInfo.gameObject.GetComponent<CameraScript>().isFlashactive();
         return this;
     }
 
@@ -32,9 +34,10 @@ public class FloorData : MonoBehaviour
         CamCoords = SD.CamPos;
         CamRotation = SD.CamRot;
         ImageNumber = 0;
+        isUsingFlash = SD.isUsingFlash;
     }
 
-    public void RecreateRoom(Transform Camera, Transform parent)
+    void RecreateRoom(Transform parent)
     {
         Instantiate(GameObject.Find("ListOfLevels").GetComponent<Values>().GetLevel(RoomPrefab), parent);
     }
