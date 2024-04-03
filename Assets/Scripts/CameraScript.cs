@@ -77,6 +77,13 @@ public class CameraScript : MonoBehaviour
                 toggleflash = !toggleflash;
             }
 
+            if (Input.GetKey(KeyCode.Space))
+            {
+                SaveSystem.RemovePhoto(imageNo);
+                takenPhotos = dir.GetFiles().Length;
+                imageNo = takenPhotos;
+            }
+
             if (Input.GetKey(KeyCode.Q))
             {
                 DefaultViewPort.SetActive(true);
