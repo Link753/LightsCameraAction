@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(Mathf.Abs(Vector3.Distance(transform.position,Entity.position)) < 2f)
+        if(Mathf.Abs(Vector3.Distance(transform.position,Entity.position)) < 2f & Entity.gameObject.activeSelf)
         {
             if (Entity.GetComponent<EntityScript>().isAgro())
             {

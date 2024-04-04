@@ -9,11 +9,13 @@ public class InteractionReaction : MonoBehaviour
     [SerializeField] bool hasAnimation;
     [SerializeField] bool isInventoryItem;
     [SerializeField] bool isSwitch;
+    [SerializeField] bool CanbeToggled;
     [Header("Check Object")]
     [SerializeField] bool doesInteractwithEnvironment;
     [Header("For Switch")]
     [SerializeField] GameObject[] connectedObjects;
     Animator anim = new();
+    Vector3 startingrotation;
     Rigidbody body;
 
     private void Start()
@@ -23,6 +25,7 @@ public class InteractionReaction : MonoBehaviour
             anim = GetComponent<Animator>();
         }
         body = GetComponent<Rigidbody>();
+        startingrotation = new(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
     }
 
     private void Update()
@@ -38,6 +41,7 @@ public class InteractionReaction : MonoBehaviour
             {
                 transform.SetParent(null);
                 body.isKinematic = false;
+                transform.rotation = Quaternion.Euler(startingrotation);
                 //ifHit = Physics.Raycast(transform.position, transform.up, out hit); // meant to check if object is under the floor. doesnt work atm 07/02/2024
                 //if (ifHit)
                 //{
@@ -65,7 +69,14 @@ public class InteractionReaction : MonoBehaviour
         {
             foreach(GameObject g in connectedObjects)
             {
-                g.SetActive(!g.activeSelf);
+                if (g.activeSelf & CanbeToggled)
+                {
+                    g.SetActive(!g.activeSelf);
+                }
+                else
+                {
+                    g.SetActive(true);
+                }
             }
         }
     }

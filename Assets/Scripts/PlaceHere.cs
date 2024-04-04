@@ -30,13 +30,17 @@ public class PlaceHere : MonoBehaviour
             {
                 g.GetComponent<Animator>().SetTrigger("isActive");
             }
+            foreach(GameObject g in connectedObjects)
+            {
+                g.SetActive(true);
+            }
             isActivated = true;
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.collider.gameObject.layer == 6 || collision.collider.gameObject.layer == 7)
+        if(collision.collider.gameObject.layer == 3 || collision.collider.gameObject.layer == 7)
         {
             foreach (GameObject g in connectedObjects)
             {
