@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new(PD.PlayerPos[0], PD.PlayerPos[1], PD.PlayerPos[2]);
             transform.localRotation = Quaternion.Euler(PD.PlayerRot[0], PD.PlayerRot[1], PD.PlayerRot[2]);
         }
-        y = transform.position.y;
     }
 
     // Start is called before the first frame update
@@ -29,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         xmove = 0f;
         zmove = 0f;
+        y = transform.position.y;
     }
 
     // Update is called once per frame
@@ -36,7 +36,10 @@ public class PlayerMovement : MonoBehaviour
     {
         xmove = Input.GetAxis("Horizontal");
         zmove = Input.GetAxis("Vertical");
-        transform.position = new(transform.position.x, y, transform.position.z);
+        if(transform.position.y != y)
+        {
+            transform.position = new(transform.position.x, y, transform.position.z);
+        }
         move = transform.right * xmove + transform.forward * zmove;
         controller.Move(move * speed * Time.deltaTime);
         if (Input.GetKeyUp(KeyCode.Escape))
