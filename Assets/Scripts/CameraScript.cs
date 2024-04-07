@@ -115,7 +115,7 @@ public class CameraScript : MonoBehaviour
 
     void CaptureImage()
     {
-        Physics.Raycast(transform.position, -transform.up, out hit);
+        Physics.Raycast(transform.position + transform.forward, -transform.up, out hit);
         for (int i = 0; i < MaxpictureCount; i++)
         {
             if(SaveSystem.LoadPicture(i) == null)
@@ -129,7 +129,7 @@ public class CameraScript : MonoBehaviour
             }
         }
 
-        Physics.Raycast(transform.position + transform.forward, transform.forward * 100, out hit);
+        Physics.Raycast(transform.position + transform.forward, transform.forward, out hit);
         if (hit.collider.gameObject.GetComponent<EntityScript>())
         {
             hit.collider.gameObject.GetComponent<EntityScript>().Teleport();

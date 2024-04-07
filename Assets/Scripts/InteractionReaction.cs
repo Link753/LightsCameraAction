@@ -9,11 +9,14 @@ public class InteractionReaction : MonoBehaviour
     [SerializeField] bool hasAnimation;
     [SerializeField] bool isInventoryItem;
     [SerializeField] bool isSwitch;
+    [SerializeField] bool isFused;
     [SerializeField] bool CanbeToggled;
     [Header("Check Object")]
     [SerializeField] bool doesInteractwithEnvironment;
     [Header("For Switch")]
     [SerializeField] GameObject[] connectedObjects;
+    [SerializeField] GameObject Fuse;
+    [SerializeField] bool DoesDeactivate;
     Animator anim = new();
     Vector3 startingrotation;
     Rigidbody body;
@@ -67,15 +70,35 @@ public class InteractionReaction : MonoBehaviour
         }
         else if(isSwitch)
         {
-            foreach(GameObject g in connectedObjects)
+            if (isFused)
             {
-                if (g.activeSelf & CanbeToggled)
+                if (Fuse.activeSelf)
                 {
-                    g.SetActive(!g.activeSelf);
+                    foreach (GameObject g in connectedObjects)
+                    {
+                        if (g.activeSelf & CanbeToggled)
+                        {
+                            g.SetActive(!g.activeSelf);
+                        }
+                        else
+                        {
+                            g.SetActive(true);
+                        }
+                    }
                 }
-                else
+            }
+            else
+            {
+                foreach (GameObject g in connectedObjects)
                 {
-                    g.SetActive(true);
+                    if (g.activeSelf & CanbeToggled)
+                    {
+                        g.SetActive(!g.activeSelf);
+                    }
+                    else
+                    {
+                        g.SetActive(true);
+                    }
                 }
             }
         }

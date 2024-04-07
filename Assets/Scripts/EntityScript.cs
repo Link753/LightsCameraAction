@@ -17,8 +17,8 @@ public class EntityScript : MonoBehaviour
 
     enum State
     {
-        TELEPORT,
         OBSERVE,
+        LOOKFORPLAYER,
         CHASE
     }
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class EntityScript : MonoBehaviour
     {
         isAggravated = false;
         state = new();
-        state = State.TELEPORT;
+        state = State.OBSERVE;
         Stage = 0;
         timesTeleported = 0;
         agent = GetComponent<NavMeshAgent>();
@@ -42,21 +42,25 @@ public class EntityScript : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(transform.position, transform.forward * 5, Color.red);
-        if(Stage == 0)
-        {
-            transform.LookAt(Player);
-        }
-        else if(Stage == 1)
-        {
-            agent.SetDestination(Player.position);
-        }
 
         switch (state)
         {
-            case State.TELEPORT:
-                break;
             case State.OBSERVE:
                 transform.LookAt(Player);
+                break;
+            case State.LOOKFORPLAYER:
+                Physics.Raycast(transform.position, transform.forward, out hit);
+                Debug.Log(hit.collider.name);
+                if (hit.collider.CompareTag("Player"))
+                {
+                    agent.SetDestination(transform.position);
+                    transform.LookAt(Player);
+                }
+                else
+                {
+                    agent.SetDestination(Player.position);
+                    transform.LookAt(Player);
+                }
                 break;
             case State.CHASE:
                 agent.SetDestination(Player.position);
@@ -71,7 +75,7 @@ public class EntityScript : MonoBehaviour
         
         if(timesTeleported == 1)
         {
-            state = State.OBSERVE;
+            state = State.LOOKFORPLAYER;
         }
     }
 

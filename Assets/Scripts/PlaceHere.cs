@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaceHere : MonoBehaviour
 {
     [Header("Config")]
-    [SerializeField] LayerMask KeyMask;
+    [SerializeField] bool DoesDeactivate;
     [Header("Connections")]
     [SerializeField] GameObject[] connectedObjects;
     [SerializeField] GameObject[] AnimatedObjects;
@@ -44,7 +44,14 @@ public class PlaceHere : MonoBehaviour
         {
             foreach (GameObject g in connectedObjects)
             {
-                g.SetActive(true);
+                if (DoesDeactivate)
+                {
+                    g.SetActive(false);
+                }
+                else
+                {
+                    g.SetActive(true);
+                }
             }
         }
     }
