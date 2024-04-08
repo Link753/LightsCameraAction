@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class EntityScript : MonoBehaviour
 {
-    int Stage, timesTeleported;
+    int timesTeleported;
     bool isAggravated;
     State state;
     NavMeshAgent agent;
@@ -28,7 +28,6 @@ public class EntityScript : MonoBehaviour
         isAggravated = false;
         state = new();
         state = State.OBSERVE;
-        Stage = 0;
         timesTeleported = 0;
         agent = GetComponent<NavMeshAgent>();
     }

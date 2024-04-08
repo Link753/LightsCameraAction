@@ -6,14 +6,17 @@ public class PlaceHere : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] bool DoesDeactivate;
+    [SerializeField] bool PlayerActivated;
     [Header("Connections")]
     [SerializeField] GameObject[] connectedObjects;
     [SerializeField] GameObject[] AnimatedObjects;
     bool isActivated;
+    bool flagset;
     // Start is called before the first frame update
     void Start()
     {
         isActivated = false;
+        flagset = false;
     }
 
     // Update is called once per frame
@@ -24,7 +27,7 @@ public class PlaceHere : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player") & !isActivated)
+        if(other.CompareTag("Player") & !isActivated & PlayerActivated)
         {
             foreach(GameObject g in AnimatedObjects)
             {
@@ -35,12 +38,13 @@ public class PlaceHere : MonoBehaviour
                 g.SetActive(true);
             }
             isActivated = true;
+            flagset = true;
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.collider.gameObject.layer == 3 || collision.collider.gameObject.layer == 7)
+        if(collision.collider.gameObject.layer == 3 || collision.collider.gameObject.layer == 7 & !PlayerActivated)
         {
             foreach (GameObject g in connectedObjects)
             {
@@ -53,6 +57,7 @@ public class PlaceHere : MonoBehaviour
                     g.SetActive(true);
                 }
             }
+            flagset = true;
         }
     }
 
@@ -62,6 +67,16 @@ public class PlaceHere : MonoBehaviour
         {
             g.SetActive(false);
         }
+    }
+
+    public void SetFlag(bool SettoThis)
+    {
+        flagset = SettoThis;
+    }
+
+    public bool GetFlag()
+    {
+        return flagset;
     }
 
 }

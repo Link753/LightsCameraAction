@@ -6,8 +6,6 @@ public class InteractionReaction : MonoBehaviour
 {
     [Header("Interactable")]
     [SerializeField] bool isMovable;
-    [SerializeField] bool hasAnimation;
-    [SerializeField] bool isInventoryItem;
     [SerializeField] bool isSwitch;
     [SerializeField] bool isFused;
     [SerializeField] bool CanbeToggled;
@@ -18,6 +16,7 @@ public class InteractionReaction : MonoBehaviour
     [SerializeField] GameObject Fuse;
     [SerializeField] bool DoesDeactivate;
     Animator anim = new();
+    bool flagset;
     Vector3 startingrotation;
     Rigidbody body;
 
@@ -27,6 +26,7 @@ public class InteractionReaction : MonoBehaviour
         {
             anim = GetComponent<Animator>();
         }
+        flagset = false;
         body = GetComponent<Rigidbody>();
         startingrotation = new(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
     }
@@ -46,7 +46,7 @@ public class InteractionReaction : MonoBehaviour
                 body.isKinematic = false;
                 transform.rotation = Quaternion.Euler(startingrotation);
                 //ifHit = Physics.Raycast(transform.position, transform.up, out hit); // meant to check if object is under the floor. doesnt work atm 07/02/2024
-                //if (ifHit)
+                //if (ifHit) most likely will never get resolved before submission deadline 08/04/2024
                 //{
                 //    if (hit.collider.name == "Floor")
                 //    {
@@ -60,15 +60,7 @@ public class InteractionReaction : MonoBehaviour
                 body.isKinematic = true;
             }
         }
-        else if (hasAnimation)
-        {
-
-        }
-        else if (isInventoryItem)
-        {
-
-        }
-        else if(isSwitch)
+        else if(isSwitch & !flagset)
         {
             if (isFused)
             {
@@ -101,6 +93,29 @@ public class InteractionReaction : MonoBehaviour
                     }
                 }
             }
+            flagset = true;
         }
     }
+
+    public void setFlag(bool SetToThis)
+    {
+        flagset = SetToThis;
+        foreach (GameObject g in connectedObjects)
+        {
+            if (g.activeSelf & CanbeToggled)
+            {
+                g.SetActive(!g.activeSelf);
+            }
+            else
+            {
+                g.SetActive(true);
+            }
+        }
+    }
+
+    public bool GetFlag()
+    {
+        return flagset;
+    }
+
 }
