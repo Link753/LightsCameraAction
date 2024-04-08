@@ -15,6 +15,7 @@ public class InteractionReaction : MonoBehaviour
     [SerializeField] GameObject[] connectedObjects;
     [SerializeField] GameObject Fuse;
     [SerializeField] bool DoesDeactivate;
+    [SerializeField] bool DoesSetFlag;
     Animator anim = new();
     bool flagset;
     Vector3 startingrotation;
@@ -26,6 +27,7 @@ public class InteractionReaction : MonoBehaviour
         {
             anim = GetComponent<Animator>();
         }
+        
         flagset = false;
         body = GetComponent<Rigidbody>();
         startingrotation = new(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
@@ -93,7 +95,14 @@ public class InteractionReaction : MonoBehaviour
                     }
                 }
             }
-            flagset = true;
+            if (DoesSetFlag)
+            {
+                flagset = true;
+            }
+            else
+            {
+                flagset = false;
+            }
         }
     }
 

@@ -49,7 +49,6 @@ public class EntityScript : MonoBehaviour
                 break;
             case State.LOOKFORPLAYER:
                 Physics.Raycast(transform.position, transform.forward, out hit);
-                Debug.Log(hit.collider.name);
                 if (hit.collider.CompareTag("Player"))
                 {
                     agent.SetDestination(transform.position);

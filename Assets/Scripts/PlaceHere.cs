@@ -44,7 +44,7 @@ public class PlaceHere : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.collider.gameObject.layer == 3 || collision.collider.gameObject.layer == 7 & !PlayerActivated)
+        if((collision.collider.gameObject.layer == 3 || collision.collider.gameObject.layer == 7) & !PlayerActivated)
         {
             foreach (GameObject g in connectedObjects)
             {
