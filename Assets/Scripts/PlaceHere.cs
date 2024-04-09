@@ -7,6 +7,7 @@ public class PlaceHere : MonoBehaviour
     [Header("Config")]
     [SerializeField] bool DoesDeactivate;
     [SerializeField] bool PlayerActivated;
+    [SerializeField] Values ForSaving;
     [Header("Connections")]
     [SerializeField] GameObject[] connectedObjects;
     [SerializeField] GameObject[] AnimatedObjects;
@@ -72,6 +73,15 @@ public class PlaceHere : MonoBehaviour
     public void SetFlag(bool SettoThis)
     {
         flagset = SettoThis;
+        foreach (GameObject g in AnimatedObjects)
+        {
+            g.GetComponent<Animator>().SetTrigger("isActive");
+        }
+        foreach (GameObject g in connectedObjects)
+        {
+            g.SetActive(true);
+        }
+        isActivated = true;
     }
 
     public bool GetFlag()

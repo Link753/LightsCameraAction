@@ -18,6 +18,8 @@ public class Values : MonoBehaviour
         {
             PD = SaveSystem.LoadPlayer();
             flagsSet = PD.flagsSet;
+            Debug.Log(flagsSet);
+            Debug.Log(Flags.Length);
             for (int i = 0; i < flagsSet; i++)
             {
                 if (Flags[i].GetComponent<InteractionReaction>())
@@ -50,16 +52,30 @@ public class Values : MonoBehaviour
         takenPictures = picturecount;
     }
 
-    public void increaseflagCount()
-    {
-        flagsSet++;
-    }
-
     public int[] GetValues()
     {
         int[] Return = new int[3];
         Return[0] = CameraBatteryLevel;
         Return[1] = takenPictures;
+        flagsSet = 0;
+        foreach(GameObject g in Flags)
+        {
+            if (g.GetComponent<PlaceHere>())
+            {
+                if (g.GetComponent<PlaceHere>().GetFlag())
+                {
+                    flagsSet++;
+                }
+            }
+            else if (g.GetComponent<InteractionReaction>())
+            {
+                if (g.GetComponent<InteractionReaction>().GetFlag())
+                {
+                    flagsSet++;
+                }
+            }
+        }
+        Debug.Log(flagsSet);
         Return[2] = flagsSet;
         return Return;
     }

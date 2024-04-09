@@ -20,7 +20,10 @@ public static class SaveSystem
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         string path = Application.persistentDataPath + ("/Save.save");
-        Debug.Log(path);
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
         FileStream stream = new(path, FileMode.Create);
         binaryFormatter.Serialize(stream, Data);
         stream.Close();
