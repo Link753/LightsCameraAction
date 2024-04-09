@@ -649,6 +649,8 @@ MonoBehaviour:
   - {fileID: 1822541205}
   - {fileID: 842762480}
   - {fileID: 476364885}
+  - {fileID: 1126312195}
+  - {fileID: 1991899300}
   Player: {fileID: 449316729}
 --- !u!4 &221390666
 Transform:
@@ -3150,6 +3152,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040026173}
   m_CullTransparentMesh: 1
+--- !u!1 &1126312195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4651218587966331955, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+  m_PrefabInstance: {fileID: 1085069932035134513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1184552513
 GameObject:
   m_ObjectHideFlags: 0
@@ -4381,6 +4388,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1991899300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8009986807341460842, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+  m_PrefabInstance: {fileID: 1085069932035134513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2011458671
 GameObject:
   m_ObjectHideFlags: 0
