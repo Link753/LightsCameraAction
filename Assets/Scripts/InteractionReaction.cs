@@ -93,6 +93,11 @@ public class InteractionReaction : MonoBehaviour
                     {
                         g.SetActive(true);
                     }
+
+                    if(g.name == "Door")
+                    {
+                        g.GetComponent<Animator>().SetBool("isopen", true);
+                    }
                 }
             }
             if (DoesSetFlag)

@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 449316730}
-  speed: 12
+  speed: 4
   xmove: 0
   zmove: 0
   Camera: {fileID: 1945362409}
@@ -2697,6 +2697,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &926045275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7524983944634996901, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+  m_PrefabInstance: {fileID: 1085069932035134513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -4804,7 +4809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6442552260957146700, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: connectedObjects.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6442552260957146700, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: connectedObjects.Array.data[0]
@@ -4822,6 +4827,10 @@ PrefabInstance:
       propertyPath: connectedObjects.Array.data[3]
       value: 
       objectReference: {fileID: 1883325369}
+    - target: {fileID: 6442552260957146700, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+      propertyPath: connectedObjects.Array.data[4]
+      value: 
+      objectReference: {fileID: 926045275}
     - target: {fileID: 6675628444533593066, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: m_Layer
       value: 2
