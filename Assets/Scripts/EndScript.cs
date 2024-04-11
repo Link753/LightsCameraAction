@@ -15,7 +15,6 @@ public class EndScript : MonoBehaviour
     {
         yield return new WaitForSeconds(waittime);
         SceneManager.LoadScene(0);
-        Debug.Log("Waiting");
     }
 
     void Start()

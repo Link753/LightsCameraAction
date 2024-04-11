@@ -50,7 +50,7 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        camDisplay.text = "Battery: " + CameraBatteryLevel + "%";
+        //camDisplay.text = "Battery: " + CameraBatteryLevel + "%"; disabled as no time for further intergration
         imageNodisplay.text = imageNo.ToString();
         if(Input.GetKeyUp(KeyCode.E))
         {
