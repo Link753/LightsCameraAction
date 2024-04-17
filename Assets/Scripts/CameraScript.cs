@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour
 {
     RaycastHit hit;
     int imageNo, MaxpictureCount, takenPhotos, CameraBatteryLevel;
-    bool toggle, viewingMode, toggleflash;
+    bool toggle, viewingMode, toggleflash, isHoldingObject;
     Animator animator;
     [SerializeField] Transform ViewPicture;
     [SerializeField] Values Values;
@@ -35,6 +35,7 @@ public class CameraScript : MonoBehaviour
         {
             CameraBatteryLevel = 100;
         }
+        isHoldingObject = false;
         toggle = false;
         toggleflash = false;
         flash.SetActive(false);
@@ -50,6 +51,15 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(transform.parent.GetChild(0).childCount != 0)
+        {
+            isHoldingObject = true;
+            toggle = false;
+        }
+        else
+        {
+            isHoldingObject = false;
+        }
         //camDisplay.text = "Battery: " + CameraBatteryLevel + "%"; disabled as no time for further intergration
         imageNodisplay.text = imageNo.ToString();
         if(Input.GetKeyUp(KeyCode.E))
@@ -67,7 +77,7 @@ public class CameraScript : MonoBehaviour
                 viewingMode = true;
             }
 
-            if (Input.GetMouseButtonUp(0) & !viewingMode)
+            if (Input.GetMouseButtonUp(0) & !viewingMode &!isHoldingObject)
             {
                 CaptureImage();
             }
