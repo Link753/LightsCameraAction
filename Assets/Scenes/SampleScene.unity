@@ -1688,7 +1688,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 0
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -1712,6 +1712,9 @@ MonoBehaviour:
   Camera: {fileID: 1945362409}
   Entity: {fileID: 1373448430}
   PauseMenu: {fileID: 231104363}
+  TutorialObjects:
+  - {fileID: 604904322}
+  - {fileID: 59906270}
 --- !u!65 &449316733
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1758,7 +1761,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!95 &449316735
 Animator:
@@ -3669,7 +3672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1037913685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5138,7 +5141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1713181098
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5727,6 +5730,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -11.26
       objectReference: {fileID: 0}
+    - target: {fileID: 1825379321687583635, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1834453743385270355, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.58
@@ -5811,6 +5818,10 @@ PrefabInstance:
       propertyPath: connectedObjects.Array.data[0]
       value: 
       objectReference: {fileID: 476364885}
+    - target: {fileID: 3433847565640792869, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4140850628947102537, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: connectedObjects.Array.data[0]
       value: 
@@ -5915,9 +5926,17 @@ PrefabInstance:
       propertyPath: connectedObjects.Array.data[4]
       value: 
       objectReference: {fileID: 926045275}
+    - target: {fileID: 6662104866548071364, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6675628444533593066, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6714757039414892864, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6759220386917115023, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6092,6 +6111,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 1dcdc675064358f418e9e2308a875ffa, type: 2}
     - target: {fileID: 8930793302662920572, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+      propertyPath: DoesDeactivate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930793302662920572, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: AnimatedObjects.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -6107,6 +6130,14 @@ PrefabInstance:
       propertyPath: connectedObjects.Array.data[1]
       value: 
       objectReference: {fileID: 463310819}
+    - target: {fileID: 8930793302662920572, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+      propertyPath: connectedObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 59906270}
+    - target: {fileID: 8930793302662920572, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
+      propertyPath: connectedObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 604904322}
     - target: {fileID: 9136459780057942413, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.7071068
@@ -6135,7 +6166,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7600023660555880561, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
-      insertIndex: -1
+      insertIndex: 45
       addedObject: {fileID: 1272521048}
     - targetCorrespondingSourceObject: {fileID: 9136459780057942413, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       insertIndex: -1
@@ -6442,6 +6473,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 37fb36a5d043e48439b5a855e362370e, type: 2}
+    - target: {fileID: 8837741324297326945, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4688839248342278772, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
     - {fileID: 5588131712007202083, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}

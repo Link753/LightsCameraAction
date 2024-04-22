@@ -25,7 +25,6 @@ public class PlaceHere : MonoBehaviour
     {
         
     }
-
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player") & !isActivated & PlayerActivated)
