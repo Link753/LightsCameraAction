@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     {
         xmove = 0f;
         zmove = 0f;
-        y = transform.position.y;
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         xmove = Input.GetAxis("Horizontal");
         zmove = Input.GetAxis("Vertical");
-        transform.position = new(transform.position.x, y, transform.position.z);
+        transform.position = new(transform.position.x, transform.position.y, transform.position.z);
         move = transform.right * xmove + transform.forward * zmove;
         controller.Move(move * speed * Time.deltaTime);
         if(Input.GetMouseButton(0) || Input.GetMouseButton(1))
@@ -57,12 +57,12 @@ public class PlayerMovement : MonoBehaviour
             if (PauseMenu.activeSelf)
             {
                 Time.timeScale = 0;
-                Cursor.lockState = CursorLockMode.None;
+                UnityEngine.Cursor.lockState = CursorLockMode.None;
             }
             else
             {
                 Time.timeScale = 1;
-                Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             }
         }
 
