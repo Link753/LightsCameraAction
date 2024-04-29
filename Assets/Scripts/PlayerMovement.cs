@@ -44,13 +44,6 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new(transform.position.x, transform.position.y, transform.position.z);
         move = transform.right * xmove + transform.forward * zmove;
         controller.Move(move * speed * Time.deltaTime);
-        if(Input.GetMouseButton(0) || Input.GetMouseButton(1))
-        {
-            foreach(GameObject t in TutorialObjects)
-            {
-                t.SetActive(false);
-            }
-        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             PauseMenu.SetActive(!PauseMenu.activeSelf);

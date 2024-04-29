@@ -3249,11 +3249,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2558484407069069139, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
   m_PrefabInstance: {fileID: 1085069932035134513}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &800155548 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1280444572870542306, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
-  m_PrefabInstance: {fileID: 1085069932035134513}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &842762480 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 687675797761847173, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
@@ -4292,11 +4287,6 @@ CanvasRenderer:
 --- !u!1 &1237739480 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1164605720707907962, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
-  m_PrefabInstance: {fileID: 1085069932035134513}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1269595951 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 153420275188611750, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
   m_PrefabInstance: {fileID: 1085069932035134513}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1272521047 stripped
@@ -6448,7 +6438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7374209742326161342, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: connectedObjects.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7374209742326161342, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: connectedObjects.Array.data[0]
@@ -6477,11 +6467,11 @@ PrefabInstance:
     - target: {fileID: 7374209742326161342, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: connectedObjects.Array.data[6]
       value: 
-      objectReference: {fileID: 800155548}
+      objectReference: {fileID: 604904322}
     - target: {fileID: 7374209742326161342, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: connectedObjects.Array.data[7]
       value: 
-      objectReference: {fileID: 1269595951}
+      objectReference: {fileID: 59906270}
     - target: {fileID: 7374209742326161342, guid: 00e59ab1f01494941a57cbc802af5747, type: 3}
       propertyPath: connectedObjects.Array.data[8]
       value: 
