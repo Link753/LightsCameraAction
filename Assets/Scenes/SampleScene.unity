@@ -1802,6 +1802,7 @@ GameObject:
   - component: {fileID: 449316735}
   - component: {fileID: 449316736}
   - component: {fileID: 449316737}
+  - component: {fileID: 449316738}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1972,6 +1973,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &449316738
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449316725}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &454581264
 GameObject:
   m_ObjectHideFlags: 0
@@ -6946,7 +6968,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 37fb36a5d043e48439b5a855e362370e, type: 2}
     - target: {fileID: 8837741324297326945, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
       propertyPath: m_Speed
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4688839248342278772, guid: 25af4b0c985e3464b938ffa47fd9755c, type: 3}
