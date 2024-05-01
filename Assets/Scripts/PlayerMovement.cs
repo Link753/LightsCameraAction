@@ -41,7 +41,11 @@ public class PlayerMovement : MonoBehaviour
     {
         xmove = Input.GetAxis("Horizontal");
         zmove = Input.GetAxis("Vertical");
-        transform.position = new(transform.position.x, transform.position.y, transform.position.z);
+        //transform.position = new(transform.position.x, transform.position.y, transform.position.z);
+        transform.forward = new Vector3(transform.forward.x, 0.0f, transform.forward.z);
+        transform.forward.Normalize();
+        transform.right = new Vector3(transform.right.x, 0.0f, transform.right.z);
+        transform.right.Normalize();
         move = transform.right * xmove + transform.forward * zmove;
         controller.Move(move * speed * Time.deltaTime);
         if (Input.GetKeyUp(KeyCode.Escape))

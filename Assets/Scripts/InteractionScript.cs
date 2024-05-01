@@ -4,7 +4,7 @@ public class InteractionScript : MonoBehaviour
 {
     RaycastHit hit = new();
     [SerializeField]GameObject InteractableTEXT;
-    [SerializeField]GameObject Interactables;
+    [SerializeField]GameObject Interactables, Holding;
     InteractionReaction potentialInteraction;
     bool ifHit;
     // Update is called once per frame
@@ -28,6 +28,11 @@ public class InteractionScript : MonoBehaviour
         {
             potentialInteraction = null;
             InteractableTEXT.SetActive(false);
+        }
+
+        if(Holding.transform.childCount != 0)
+        {
+            potentialInteraction = Holding.transform.GetChild(0).GetComponent<InteractionReaction>();
         }
 
         if (Input.GetMouseButtonUp(0))
