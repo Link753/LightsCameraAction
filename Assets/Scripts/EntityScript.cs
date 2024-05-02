@@ -13,7 +13,6 @@ public class EntityScript : MonoBehaviour
     Transform teleportpoints;
     RaycastHit hit;
     [SerializeField] Transform Player;
-    [SerializeField] Transform[] telepoints;
 
     enum State
     {
@@ -41,26 +40,29 @@ public class EntityScript : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(transform.position, transform.forward * 5, Color.red);
-
+        transform.LookAt(Player);
+        agent.SetDestination(Player.position);
         switch (state)
         {
             case State.OBSERVE:
-                transform.LookAt(Player);
+                agent.speed = 0;
                 break;
             case State.LOOKFORPLAYER:
-                Physics.Raycast(transform.position, transform.forward, out hit);
-                if (hit.collider.CompareTag("Player"))
+                if (Physics.Raycast(transform.position, transform.forward, out hit))
                 {
-                    agent.SetDestination(transform.position);
-                    transform.LookAt(Player);
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        agent.speed = 0;
+                    }
+                    else
+                    {
+                        agent.speed = 5;
+                    }
                 }
-                else
-                {
-                    agent.SetDestination(Player.position);
-                    transform.LookAt(Player);
-                }
+
                 break;
             case State.CHASE:
+                agent.speed = 5;
                 agent.SetDestination(Player.position);
                 break;
         }

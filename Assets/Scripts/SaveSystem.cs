@@ -71,7 +71,6 @@ public static class SaveSystem
     public static void RemovePhoto(int ImageNo)
     {
         string path = Application.persistentDataPath + ("/Image" + ImageNo + ".image");
-        Debug.Log(path);
         if (File.Exists(path))
         {
             File.Delete(path);

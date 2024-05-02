@@ -10,9 +10,9 @@ public class WarningLightsScript : MonoBehaviour
     // Start is called before the first frame update
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        if(Mathf.Abs(Vector3.Distance(player.position, Entity.position)) < dangerlevel & Entity.gameObject.activeSelf)
+        if(Mathf.Abs(Vector3.Distance(player.position, Entity.position)) <= dangerlevel & Entity.gameObject.activeSelf)
         {
             for (int i = 0; i < transform.childCount; i++)
             {
