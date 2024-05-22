@@ -7,7 +7,6 @@ public class PlaceHere : MonoBehaviour
     [Header("Config")]
     [SerializeField] bool DoesDeactivate;
     [SerializeField] bool PlayerActivated;
-    [SerializeField] Values ForSaving;
     [Header("Connections")]
     [SerializeField] GameObject[] connectedObjects;
     [SerializeField] GameObject[] AnimatedObjects;

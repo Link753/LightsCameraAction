@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
+using TMPro;
 
 public class Values : MonoBehaviour
 {
     [SerializeField] GameObject[] Levels;
     [SerializeField] GameObject[] Flags;
     [SerializeField] Transform Player;
+    [SerializeField] TMP_Text Objective;
     int CameraBatteryLevel, takenPictures, flagsSet;
     PlayerData PD;
 
@@ -18,8 +21,6 @@ public class Values : MonoBehaviour
         {
             PD = SaveSystem.LoadPlayer();
             flagsSet = PD.flagsSet;
-            Debug.Log(flagsSet);
-            Debug.Log(Flags.Length);
             for (int i = 0; i < flagsSet; i++)
             {
                 if (Flags[i].GetComponent<InteractionReaction>())
@@ -32,6 +33,11 @@ public class Values : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Update()
+    {
+        Objective.text = Flags[flagsSet].GetComponent<InteractionReaction>().GetObjective();
     }
 
     public GameObject GetLevel(string levelname)

@@ -9,6 +9,7 @@ public class InteractionReaction : MonoBehaviour
     [SerializeField] bool isSwitch;
     [SerializeField] bool isFused;
     [SerializeField] bool CanbeToggled;
+    [SerializeField] bool PlayerActivated;
     [Header("Check Object")]
     [SerializeField] bool doesInteractwithEnvironment;
     [Header("For Switch")]
@@ -16,9 +17,10 @@ public class InteractionReaction : MonoBehaviour
     [SerializeField] GameObject Fuse;
     [SerializeField] bool DoesDeactivate;
     [SerializeField] bool DoesSetFlag;
+    [Header("For Objectives")]
+    [SerializeField] string Objective;
     Animator anim = new();
     bool flagset;
-    Vector3 startingrotation;
     Rigidbody body;
 
     private void Start()
@@ -30,12 +32,6 @@ public class InteractionReaction : MonoBehaviour
         
         flagset = false;
         body = GetComponent<Rigidbody>();
-        startingrotation = new(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
-    }
-
-    private void Update()
-    {
-
     }
 
     public void Dointeraction()
@@ -46,7 +42,7 @@ public class InteractionReaction : MonoBehaviour
             {
                 transform.SetParent(null);
                 body.isKinematic = false;
-                transform.rotation = Quaternion.Euler(startingrotation);
+                transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
                 //ifHit = Physics.Raycast(transform.position, transform.up, out hit); // meant to check if object is under the floor. doesnt work atm 07/02/2024
                 //if (ifHit) most likely will never get resolved before submission deadline 08/04/2024
                 //{
@@ -68,31 +64,14 @@ public class InteractionReaction : MonoBehaviour
             {
                 if (Fuse.activeSelf)
                 {
-                    foreach (GameObject g in connectedObjects)
-                    {
-                        if (g.activeSelf & CanbeToggled)
-                        {
-                            g.SetActive(!g.activeSelf);
-                        }
-                        else
-                        {
-                            g.SetActive(true);
-                        }
-                    }
+                    Activate();
                 }
             }
             else
             {
                 foreach (GameObject g in connectedObjects)
                 {
-                    if (g.activeSelf & CanbeToggled)
-                    {
-                        g.SetActive(!g.activeSelf);
-                    }
-                    else
-                    {
-                        g.SetActive(true);
-                    }
+                    Activate();
 
                     if(g.name == "Door")
                     {
@@ -104,16 +83,11 @@ public class InteractionReaction : MonoBehaviour
             {
                 flagset = true;
             }
-            else
-            {
-                flagset = false;
-            }
         }
     }
 
-    public void setFlag(bool SetToThis)
+    void Activate()
     {
-        flagset = SetToThis;
         foreach (GameObject g in connectedObjects)
         {
             if (g.activeSelf & CanbeToggled)
@@ -127,9 +101,26 @@ public class InteractionReaction : MonoBehaviour
         }
     }
 
+    public void setFlag(bool SetToThis)
+    {
+        flagset = SetToThis;
+        Dointeraction();
+    }
+
     public bool GetFlag()
     {
         return flagset;
     }
 
+    public string GetObjective()
+    {
+        return Objective;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Player") &!flagset & PlayerActivated)
+        {
+            Dointeraction();
+        }
+    }
 }
