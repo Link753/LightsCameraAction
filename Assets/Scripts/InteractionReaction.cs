@@ -8,8 +8,10 @@ public class InteractionReaction : MonoBehaviour
     [SerializeField] bool isMovable;
     [SerializeField] bool isSwitch;
     [SerializeField] bool isFused;
+    [SerializeField] bool isPressureplate;
     [SerializeField] bool CanbeToggled;
     [SerializeField] bool PlayerActivated;
+    [SerializeField] bool UsesCollision;
     [Header("Check Object")]
     [SerializeField] bool doesInteractwithEnvironment;
     [Header("For Switch")]
@@ -20,7 +22,7 @@ public class InteractionReaction : MonoBehaviour
     [Header("For Objectives")]
     [SerializeField] string Objective;
     Animator anim = new();
-    bool flagset;
+    bool flagset, isActivated = false;
     Rigidbody body;
 
     private void Start()
@@ -58,14 +60,11 @@ public class InteractionReaction : MonoBehaviour
                 body.isKinematic = true;
             }
         }
-        else if(isSwitch & !flagset)
+        else if(isSwitch || isPressureplate & !flagset)
         {
-            if (isFused)
+            if (isFused & Fuse.activeSelf)
             {
-                if (Fuse.activeSelf)
-                {
-                    Activate();
-                }
+                Activate();
             }
             else
             {
@@ -118,9 +117,30 @@ public class InteractionReaction : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player") &!flagset & PlayerActivated)
+        if (UsesCollision)
         {
-            Dointeraction();
+            if (other.CompareTag("Player") & !flagset & PlayerActivated)
+            {
+                Dointeraction();
+                isActivated = true;
+            }
         }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (UsesCollision)
+        {
+            if ((collision.collider.gameObject.layer == 3 || collision.collider.gameObject.layer == 7) & !PlayerActivated)
+            {
+                Activate();
+                flagset = true;
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        Activate();
     }
 }

@@ -37,6 +37,7 @@ public class Values : MonoBehaviour
 
     private void Update()
     {
+        flagsSet = GetValues()[2];
         Objective.text = Flags[flagsSet].GetComponent<InteractionReaction>().GetObjective();
     }
 
@@ -81,7 +82,6 @@ public class Values : MonoBehaviour
                 }
             }
         }
-        Debug.Log(flagsSet);
         Return[2] = flagsSet;
         return Return;
     }
