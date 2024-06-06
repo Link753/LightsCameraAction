@@ -21,15 +21,12 @@ public class Values : MonoBehaviour
         {
             PD = SaveSystem.LoadPlayer();
             flagsSet = PD.flagsSet;
-            for (int i = 0; i < flagsSet; i++)
+            Debug.Log(flagsSet);
+            for (int i = 0; i <= flagsSet; i++)
             {
                 if (Flags[i].GetComponent<InteractionReaction>())
                 {
                     Flags[i].GetComponent<InteractionReaction>().setFlag(true);
-                }
-                else if (Flags[i].GetComponent<PlaceHere>())
-                {
-                    Flags[i].GetComponent<PlaceHere>().SetFlag(true);
                 }
             }
         }
@@ -67,14 +64,7 @@ public class Values : MonoBehaviour
         flagsSet = 0;
         foreach(GameObject g in Flags)
         {
-            if (g.GetComponent<PlaceHere>())
-            {
-                if (g.GetComponent<PlaceHere>().GetFlag())
-                {
-                    flagsSet++;
-                }
-            }
-            else if (g.GetComponent<InteractionReaction>())
+            if (g.GetComponent<InteractionReaction>())
             {
                 if (g.GetComponent<InteractionReaction>().GetFlag())
                 {

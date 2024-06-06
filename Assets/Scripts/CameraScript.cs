@@ -159,7 +159,6 @@ public class CameraScript : MonoBehaviour
         }
 
         SaveData SD;
-        Debug.Log(imageNo);
         if(SaveSystem.LoadPicture(ImageNo) == null)
         {
             if(imageNo > MaxpictureCount)

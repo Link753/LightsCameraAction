@@ -60,21 +60,27 @@ public class InteractionReaction : MonoBehaviour
                 body.isKinematic = true;
             }
         }
-        else if(isSwitch || isPressureplate & !flagset)
+        else if((isSwitch || isPressureplate) & !flagset)
         {
             if (isFused & Fuse.activeSelf)
             {
                 Activate();
+                foreach (GameObject g in connectedObjects)
+                {
+                    if (g.name == "Door")
+                    {
+                        g.SetActive(false);
+                    }
+                }
             }
             else
             {
+                Activate();
                 foreach (GameObject g in connectedObjects)
                 {
-                    Activate();
-
                     if(g.name == "Door")
                     {
-                        g.GetComponent<Animator>().SetBool("isopen", true);
+                        g.SetActive(false);
                     }
                 }
             }
@@ -102,8 +108,8 @@ public class InteractionReaction : MonoBehaviour
 
     public void setFlag(bool SetToThis)
     {
-        flagset = SetToThis;
         Dointeraction();
+        flagset = SetToThis;
     }
 
     public bool GetFlag()
