@@ -125,10 +125,11 @@ public class InteractionReaction : MonoBehaviour
     {
         if (UsesCollision)
         {
-            if (other.CompareTag("Player") & !flagset & PlayerActivated)
+            if (other.CompareTag("Player") && !flagset && PlayerActivated && !isActivated)
             {
                 Dointeraction();
                 isActivated = true;
+                flagset = true;
             }
         }
     }
@@ -137,7 +138,7 @@ public class InteractionReaction : MonoBehaviour
     {
         if (UsesCollision)
         {
-            if ((collision.collider.gameObject.layer == 3 || collision.collider.gameObject.layer == 7) & !PlayerActivated)
+            if ((collision.collider.gameObject.layer == 3 || collision.collider.gameObject.layer == 7) && !PlayerActivated)
             {
                 Activate();
                 flagset = true;
@@ -147,6 +148,9 @@ public class InteractionReaction : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Activate();
+        if (UsesCollision)
+        {
+            Activate();
+        }
     }
 }
